@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<!--
+Copyright (c) Microsoft. All rights reserved.  Licensed under the MIT license. See LICENSE file in the project root for full license information.
+-->
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<title>CordovaToDoApp_AngularJS</title>
+
+	<link href="css/index.css" rel="stylesheet" />
+</head>
+<body ng-app="xPlat">
+	<section id="todoapp" ng-controller="ToDoCtrl as toDoCtrl">
+		<header id="header">
+			<div id="headerBand"></div>
+			<input id="new-todo" placeholder="What needs to be done?" td-text-change="toDoCtrl.addToDo()" ng-model="toDoCtrl.newToDoText" autofocus>
+		</header>
+		<section id="main">
+			<div id="todo-list">
+				<div class="templateWrapper" ng-repeat="toDoItem in toDoCtrl.todos">
+					<div class="templateContainer">
+						<input class="templateTitle" ng-class="{crossedOut: toDoItem.done}" type="text" td-text-change="toDoCtrl.changeToDoText(toDoItem)" ng-model="toDoItem.text" />
+						<h3 class="templateAddress">{{toDoItem.address}}</h3>
+						<button class="templateLeft templateToggle" ng-class="{'checked': toDoItem.done, 'unchecked': !toDoItem.done}" ng-mousedown="toDoCtrl.toggleToDoDone(toDoItem)"></button>
+						<button class="templateLeft templateRemove" ng-click="toDoCtrl.removeToDo(toDoItem)"></button>
+					</div>
+					<div class="templateBorder"></div>
+				</div>
+			</div>
+		</section>
+	</section>
+
+	<!-- Cordova reference, this is added to your app when it's built. -->
+	<script src="cordova.js"></script>
+	<script src="scripts/platformOverrides.js"></script>
+
+	<!-- Angular JS -->
+	<script src="scripts/frameworks/angular.min.js"></script>
+	<script src="scripts/frameworks/angular-resource.min.js"></script>
+
+	<!-- Initialize all the modules -->
+	<script src="scripts/index.js"></script>
+	
+	<!-- Services -->
+	<script src="scripts/services/azureStorage.js"></script>
+	<script src="scripts/services/localStorage.js"></script>
+	<script src="scripts/services/storage.js"></script>
+	<script src="scripts/services/guidGenerator.js"></script>
+	<script src="scripts/services/maps.js"></script>
+	<script src="scripts/services/cordova.js"></script>
+
+	<!-- Directives -->
+	<script src="scripts/directives/textChange.js"></script>
+
+	<!-- Controllers -->
+	<script src="scripts/controllers/toDoCtrl.js"></script>
+</body>
+</html>

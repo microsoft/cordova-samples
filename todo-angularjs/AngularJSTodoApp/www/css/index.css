@@ -1,0 +1,216 @@
+﻿/***
+    Copyright (c) Microsoft. All rights reserved.  Licensed under the MIT license. See LICENSE file in the project root for full license information.
+*/
+
+/* reset layout*/
+html,
+body {
+    margin: 0;
+    padding: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/* body*/
+body {
+    background: #F7f7f7;
+    color: #4d4d4d;
+    margin: 0 auto;
+}
+
+/* no outline for buttons & checkboxes*/
+button,
+input[type="checkbox"] {
+    outline: none;
+}
+
+/* style the todo app */
+#todoapp {
+    background: rgba(255, 255, 255, 0.9);
+    position: relative;
+	min-height: 86%;
+
+	border: none;
+	box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.2), 0px 25px 50px 0px rgba(0,0,0,0.15);
+}
+
+/* section styles*/
+@media (min-width: 650px) {
+	/* style the todo list to look better on larger screens */
+    #todoapp {
+        width: 74%;
+        left: 13%;
+        top: 50px;
+
+		border-top-left-radius: 2px;
+		border-top-right-radius: 2px;
+    }
+
+	#headerBand {
+		border-top-left-radius: 2px;
+		border-top-right-radius: 2px;
+	}
+}
+
+/* the two red rulers*/
+#todoapp:before {
+    content: '';
+    border-style: solid;
+    border-left-color: rgba(242, 103, 103, 1);
+    border-right-color: rgba(242, 103, 103, 1);
+	border-width: 1px;
+	border-top: 0;
+	border-bottom: 0;
+    z-index: 2;
+    width: 2px;
+    position: absolute;
+    top: 0;
+    left: 40px;
+    height: 100%;
+}
+
+/* the header that contains the input */
+header {
+    height: 50px;
+}
+
+/* dark band on the header*/
+#headerBand {
+    position: relative;
+    height: 20%;
+    max-height: 20px;
+    border-bottom: 1px solid #6c615c;
+    background: rgba(52, 59, 69, 1);
+}
+
+/* the new to-do entry*/
+#new-todo {
+    background: rgba(237, 237, 237, 0.9);
+    position: relative;
+    margin: 0;
+    height: 80%;
+    max-height: 70px;
+    font-size: 21px;
+    font-family: "Arial";
+    border: 0;
+    outline: none;
+    color: rgb(114, 115, 115);
+    padding: 0 0 0 56px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* the main section that hosts the listview*/
+#main {
+    position: relative;
+    z-index: 1;
+    border-top: 1px dotted #adadad;
+}
+
+/* todo list */
+#todo-list {
+    margin: 0px;
+    overflow-y: auto;
+}
+
+/* the host template */
+.templateWrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+/* blue border under the template */
+.templateBorder {
+    height: 0;
+    border-bottom: 2px solid #bfdbf2;
+}
+
+/* container for the todo-address div */
+.templateContainer {
+    margin: 4px 15px 0px 45px;
+}
+
+.templateContainer input[type="text"] {
+    font-size: 18px;
+    font-family: "Arial";
+    background: none;
+    color: #2d3239;
+    border: 1px solid rgba(0, 0, 0, 0);
+    line-height: 0.6em;
+    margin: 0px;
+    width: 100%;
+    display: block;
+    padding: 4px 0px 4px 10px;
+	border-radius: 0;
+	-webkit-appearance: none;
+}
+
+.templateContainer input[type="text"]:active,
+.templateContainer input[type="text"]:focus {
+    color: #2d3239;
+    border: 1px solid #b2b2b2;
+    outline: none;
+    margin-left: 2px;
+    text-decoration: none !important;
+    padding-left: 8px;
+}
+
+input[type="text"]:active ~ .templateRemove,
+input[type="text"]:focus ~ .templateRemove,
+.templateRemove:active,
+.templateRemove:focus {
+    display: inline-block;
+}
+
+input[type="text"]:active ~ .templateToggle,
+input[type="text"]:focus ~ .templateToggle,
+.templateRemove:active ~ .templateToggle,
+.templateRemove:focus ~ .templateToggle {
+    display: none;
+}
+
+.crossedOut.templateTitle {
+    text-decoration: line-through;
+}
+
+.templateContainer .templateAddress {
+    color: #727272;
+    font-size: 12px;
+    font-family: "Arial";
+    padding-top: 0px;
+    margin: 0px 0px 10px 11px;
+    font-weight: normal;
+}
+
+.templateContainer p {
+    margin: 0px 0px 4px 0px;
+}
+
+/* button on the templated item */
+button.templateLeft {
+    position: absolute;
+    top: 6px;
+    left: 5px;
+    border: none;
+    width: 29px;
+    height: 29px;
+    min-width: 0;
+    min-height: 0;
+    background-color: transparent;
+}
+
+/* button when the item is checked */
+button.templateToggle.checked {
+    background-image: url('../images/checkbox_checked.png');
+}
+
+/* button when the item is unchecked */
+button.templateToggle.unchecked {
+    background-image: url('../images/checkbox.png');
+}
+
+/* button for removing the item */
+button.templateRemove {
+    display: none;
+    background-image: url('../images/delete.png');
+}

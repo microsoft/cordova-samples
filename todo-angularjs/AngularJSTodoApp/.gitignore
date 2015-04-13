@@ -1,0 +1,14 @@
+# Build specific or user specific files we don't want in source control
+bin/
+bld/
+*.jsproj.user
+
+# Used by the VS project system to mirror the file system changes
+changelist.json
+
+# Cordova-generated folders we don't want in source control (they are recreated at build)
+platforms/
+plugins/
+
+# Frameworks we can't redistribute. Files are downloaded on project build.
+www/scripts/frameworks/
