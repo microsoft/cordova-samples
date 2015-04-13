@@ -1,13 +1,12 @@
 # Cordova Sample App - AngularJS TODO App
 Visual Studio Tools for Apache Cordova combines the goodness of your favorite IDE with the ease of creating apps for multiple mobile operating systems, all in a simple to use workflow. One of the major pain points for our enterprise developers is the effort required to build apps for multiple platforms, while keeping costs and effort down. Visual Studio Tools for Apache Cordova allows developers to use HTML5 and JavaScript, along with their favorite open source framework libraries to build web applications.
 
-Leveraging the Apache Cordova framework, we create packaged mobile apps that feel and behave like native device applications. What’s great is that all this can be done completely from within Visual Studio, with full tooling support for building, debugging and packaging that our customers love. Our highlight features include attaching and debugging to the Android emulator and devices, plus, being able to build and simulate remotely for the iOS platform.
+Leveraging the Apache Cordova framework, we create packaged mobile apps that feel and behave like native device applications. Whatâ€™s great is that all this can be done completely from within Visual Studio, with full tooling support for building, debugging and packaging that our customers love. Our highlight features include attaching and debugging to the Android emulator and devices, plus, being able to build and simulate remotely for the iOS platform.
 
 The TODO sample helps you get up and running with an app that you can F5 and start playing around with. It showcases the use of the Geolocation plugin from Cordova, that lets the app use native device capabilities. It also uses Microsoft Azure as its cloud backend, to sync and make data available on any device, at any time.
 
 
 ## Building the Sample
--------------------
 [Optional] Bing Maps API
 For purposes of distribution, we have removed our API key. Please create and copy over your Bing Maps API key for the app to work as expected. If the Bing Maps key is not present, the location information shows up as "latitude, longitude" in the ToDo, instead of the actual address.
 
@@ -23,7 +22,6 @@ Create your Azure Mobile Service [Optional]
 
 
 ### Running the app
----------------
 After you finish downloading and installing our extension (http://go.microsoft.com/fwlink/?LinkId=397606), open up the project in Visual Studio.
 Add any API keys as explained above. Press F5 and you're on your way! If you haven't already done so, consider taking a look at our landing page for more information 
 
@@ -41,25 +39,22 @@ Path to downloaded files:
 
 
 ### Known Issues
-------------
 - The Android 4.3 browser has some known limitations, and so the sample may not work perfectly on such devices
 
 
 ## Terms of Use
--------------
 By downloading and running this project, you agree to the license terms of the third party application software, Microsoft products, and components to be installed. 
 
 The third party software and products are provided to you by third parties. You are responsible for reading and accepting the relevant license terms for all software that will be installed. Microsoft grants you no rights to third party software.
 
 
 ## Important links
----------------
 1. AngularJS License (https://github.com/angular/angular.js/blob/master/LICENSE)
 1. winstore-jscompat.js License (https://github.com/MSOpenTech/winstore-jscompat/blob/master/License.txt)
 
 
 ## License
--------
+
 ```
 The MIT License (MIT)
 
@@ -85,5 +80,4 @@ SOFTWARE.
 ```
 
 ## More Information
-----------------
 Email us at multidevicehybridapp@microsoft.com
