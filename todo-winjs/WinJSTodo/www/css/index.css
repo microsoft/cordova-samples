@@ -1,0 +1,200 @@
+﻿/***
+    Copyright (c) Microsoft. All rights reserved.  Licensed under the MIT license. See LICENSE file in the project root for full license information.
+*/
+
+/* reset layout*/
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #f7f7f7;
+  color: #4d4d4d;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* no outline and background for buttons*/
+button,
+button:enabled:hover:active,
+button:enabled:hover {
+  background-color: #fff;
+  outline: none;
+}
+
+/* section styles*/
+@media (min-width: 550px) {
+  #todoapp {
+    left: 13vw;
+    top: 50px;
+    width: 74vw;
+  }
+}
+
+#todoapp {
+  background: rgba(255, 255, 255, .9);
+  border: 1px solid #ccc;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, .2), 0 25px 50px 0 rgba(0, 0, 0, .15);
+  position: relative;
+}
+
+  /* the 2 red rulers*/
+  #todoapp::before {
+    border: 1px solid transparent;
+    border-left-color: rgba(242, 103, 103, 1);
+    border-right-color: rgba(242, 103, 103, 1);
+    content: '';
+    height: 100%;
+    left: 40px;
+    position: absolute;
+    top: 0;
+    width: 2px;
+    z-index: 2;
+  }
+
+/* dark band on the header*/
+#headerBand {
+  background: rgba(52, 59, 69, 1);
+  border-bottom: 1px solid #6c615c;
+  border-top-left-radius: 1px;
+  border-top-right-radius: 1px;
+  height: 4vh;
+  max-height: 20px;
+  position: relative;
+}
+
+/* the new to-do entry*/
+#new-todo {
+  background: rgba(237, 237, 237, .9);
+  border: 0;
+  box-sizing: border-box;
+  color: rgb(114, 115, 115);
+  font: 21px arial;
+  height: 10vh;
+  margin: 0;
+  max-height: 70px;
+  outline: none;
+  padding: 10px 0 0 60px;
+  position: relative;
+  width: 100%;
+}
+
+/* the main section that hosts the listview*/
+#main {
+  border-top: 1px dotted #adadad;
+  position: relative;
+  z-index: 1;
+}
+
+/*todo list*/
+#todo-list {
+  height: 86vh;
+  margin: 0;
+  min-height: calc(100vh - 90px);
+}
+
+/*the host template*/
+.templateWrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.templateBorder {
+  border-bottom: 2px solid #bfdbf2;
+  height: 0;
+}
+
+/* container for the todo-address div*/
+.templateContainer {
+  margin: 4px 5px 0 45px;
+  width: calc(100% - 50px);
+}
+
+  .templateContainer input[type="text"] {
+    background: none;
+    border: 1px solid transparent;
+    color: #2d3239;
+    font: 18px arial;
+    line-height: .6em;
+    margin: 0;
+    padding: 0 0 0 10px;
+    width: calc(100% - 15px);
+  }
+
+    .templateContainer input[type="text"]:active,
+    .templateContainer input[type="text"]:focus {
+      border: 1px solid #b2b2b2;
+      margin: 0 0 0 2px;
+      outline: none;
+      padding: 0 0 0 8px;
+      text-decoration: none !important;
+    }
+
+input[type="text"]:active ~ .templateRemove,
+input[type="text"]:focus ~ .templateRemove,
+.templateRemove:active,
+.templateRemove:focus {
+  display: inline-block;
+}
+
+  input[type="text"]:active ~ .templateToggle,
+  input[type="text"]:focus ~ .templateToggle,
+  .templateRemove:active ~ .templateToggle,
+  .templateRemove:focus ~ .templateToggle {
+    display: none;
+  }
+
+.crossedOut.templateContainer {
+  text-decoration: line-through;
+}
+
+.templateContainer .templateAddress {
+  color: #727272;
+  font: 12px arial;
+  margin: 0 0 10px 11px;
+  padding-top: 0;
+}
+
+.templateContainer p {
+  margin: 0 0 4px 0;
+}
+
+.win-listview > .win-vertical .win-container {
+  margin: 0;
+}
+
+/* buttons on the templated item*/
+.templateLeft {
+  border: none;
+  height: 29px;
+  left: 5px;
+  margin: 0;
+  min-height: 0;
+  min-width: 0;
+  position: absolute;
+  top: 9px;
+  width: 29px;
+}
+
+/* button for remove*/
+.templateRemove {
+  background-image: url('../images/delete.png');
+  display: none;
+}
+
+button.checked {
+  background-image: url('../images/checkbox_checked.png');
+}
+
+button.unchecked {
+  background-image: url('../images/checkbox.png');
+}
+
+.win-listview .win-container {
+  height: 70px;
+  width: 100%;
+}
