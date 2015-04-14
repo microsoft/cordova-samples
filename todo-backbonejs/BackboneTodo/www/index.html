@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<!--
+Copyright (c) Microsoft. All rights reserved.  Licensed under the MIT license. See LICENSE file in the project root for full license information.
+-->
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Backbone Todo Sample</title>
+</head>
+<body>
+    <section id="todoapp">
+        <header id="header">
+            <div id="headerBand"></div>
+            <input id="new-todo" placeholder="What needs to be done?">
+        </header>
+        <section id="main">
+            <div id="todo-list"></div>
+        </section>
+    </section>
+
+    <!-- Refer to underscore.js for more information on its templating language -->
+    <script type="text/html" id="todo-template">
+        <div class="templateWrapper">
+            <div class="templateContainer">
+                <input class="templateTitle" type="text" value="<%- title %>" />
+                <h3 class="templateAddress"><%- location %></h3>
+                <button class="templateLeft templateToggle"></button>
+                <button class="templateLeft templateRemove"></button>
+            </div>
+            <div class="templateBorder"></div>
+        </div>
+    </script>
+
+    <!-- Cordova references, this is added to your app when it's built. -->
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+
+    <!-- MobileServices references -->
+    <script src="services/mobile services/todolist-xplat/service.js"></script>
+
+    <!-- Backbone and prerequisite references -->
+    <script type="text/javascript" src="scripts/frameworks/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="scripts/frameworks/underscore.min.js"></script>
+    <script type="text/javascript" src="scripts/frameworks/backbone.min.js"></script>
+
+    <!-- Backbone Todo Sample references -->
+    <link href="css/index.css" rel="stylesheet" />
+    <script type="text/javascript" src="scripts/todoModel.js"></script>
+    <script type="text/javascript" src="scripts/todoCollection.js"></script>
+    <script type="text/javascript" src="scripts/todoView.js"></script>
+    <script type="text/javascript" src="scripts/baseView.js"></script>
+    <script type="text/javascript" src="scripts/geolocation.js"></script>
+    <script type="text/javascript" src="scripts/storage.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+
+</body>
+</html>
