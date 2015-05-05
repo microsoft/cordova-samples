@@ -25,7 +25,8 @@ Create your Azure Mobile Service [Optional]
 
 
 ### Running The App
-After you finish downloading and installing our extension (https://go.microsoft.com/fwlink/?LinkId=397606), open up the project in Visual Studio.
+You can download [VS Community 2015 RC in English](http://go.microsoft.com/fwlink/?LinkId=524433) to get started right away (or [go here for other languages and editions](http://www.microsoft.com/click/services/Redirect2.ashx?CR_CC=200626830)) and don’t forget to check “Tools for Apache Cordova” during setup. After you have Visual Studio 2015 installed, you can open up the project in Visual Studio.
+
 Add any API keys as explained above. Press F5 and you're on your way! If you haven't already done so, consider taking a look at our landing page for more information (http://go.microsoft.com/fwlink/?LinkID=398477).
 
 #### What the script downloads
