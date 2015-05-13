@@ -1,4 +1,5 @@
-# DEPRECATED: We recommend moving to Visual Studio 2015 and using samples for [Visual Studio 2015](https://github.com/Microsoft/cordova-samples)
+# **DEPRECATED**
+We recommend moving to Visual Studio 2015 and using our [updated samples](https://github.com/Microsoft/cordova-samples)
 
 
 # Visual Studio 2013 Tools for Apache Cordova - Sample Apps
