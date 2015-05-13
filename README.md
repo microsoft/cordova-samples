@@ -1,6 +1,7 @@
-*WIP*
+# DEPRECATED: We recommend moving to Visual Studio 2015 and using samples for [Visual Studio 2015](https://github.com/Microsoft/cordova-samples)
 
-# Visual Studio Tools for Apache Cordova - Sample Apps
+
+# Visual Studio 2013 Tools for Apache Cordova - Sample Apps
 Visual Studio Tools for Apache Cordova combines the goodness of your favorite IDE with the ease of creating apps for multiple mobile operating systems, all in a simple to use workflow. One of the major pain points for our enterprise developers is the effort required to build apps for multiple platforms, while keeping costs and effort down. Visual Studio Tools for Apache Cordova allows developers to use HTML5 and JavaScript, along with their favorite open source framework libraries to build web applications.
 
 Leveraging the Apache Cordova framework, we create packaged mobile apps that feel and behave like native device applications. What's great is that all this can be done completely from within Visual Studio, with full tooling support for building, debugging and packaging that our customers love. Our highlight features include attaching and debugging to the Android emulator and devices, plus, being able to build and simulate remotely for the iOS platform.
