@@ -1,19 +1,63 @@
-﻿/***
-    Copyright (c) Microsoft. All rights reserved.  Licensed under the MIT license. See LICENSE file in the project root for full license information.
-*/
+﻿///<reference path='..\ts\winjs.d.ts'/>
+///<reference path='..\ts\mobileservices.d.ts'/>
 
-///<reference path='..\..\packages\cordova.TypeScript.DefinitelyTyped.2.3.3\Content\Scripts\typings\cordova\cordova.d.ts' />
-///<reference path='..\..\packages\winjs.TypeScript.DefinitelyTyped.0.1.9\Content\Scripts\typings\winjs\winjs.d.ts'/>
-///<reference path='..\..\packages\azure-mobile-services-client.TypeScript.DefinitelyTyped.0.8.6\Content\Scripts\typings\azure-mobile-services-client\AzureMobileServicesClient.d.ts'/>
-/// <reference path="services.ts" />
-/// <reference path="todo.ts" />
+module Xplat {
+    "use strict";
 
-module Todo {
-  "use strict";
+    export var app: XplatApplication;
 
-  /**
-   * Container for app state
-   */
-  export var app: ToDo = new ToDo();
+    export class XplatApplication {
+        appEvents: ApplicationEvents;
 
+        constructor() {
+            this.appEvents = new ApplicationEvents();
+        }
+
+        initialize() {
+            this.bindEvents();
+
+            // TODO: Perform any additional initialization here that does not require Cordova.
+        }
+
+        bindEvents() {
+            // Handle the Cordova deviceready event.
+            document.addEventListener('deviceready', this.appEvents.onDeviceReady.bind(this.appEvents), false);
+
+            // TODO: bind any additional required events such as 'loaded', 'online' or 'offline'
+        }
+    }
+
+    export class ApplicationEvents {
+        onDeviceReady() {
+            // Handle the Cordova pause and resume events
+            document.addEventListener('pause', this.onPause, false);
+            document.addEventListener('resume', this.onResume, false);
+
+            dataSource.refresh();
+            WinJS.UI.processAll();
+        }
+
+        onPause() {
+            // TODO: This application has been suspended. Save application state here.
+        }
+
+        onResume() {
+            // TODO: This application has been reactivated. Restore application state here.
+        }
+
+        refreshTodoItems() {
+
+        }
+
+        handleError(error) {
+
+        }
+
+    }
+
+    app = new XplatApplication();
+
+    window.onload = function () {
+        app.initialize();
+    }
 }

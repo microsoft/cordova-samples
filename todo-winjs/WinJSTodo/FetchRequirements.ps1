@@ -1,5 +1,3 @@
-## Copyright (c) Microsoft. All rights reserved.  Licensed under the MIT license. See LICENSE file in the project root for full license information.
-
 param([string]$ProjectRoot = $PsScriptRoot)
 
 $zipsCache = @{};
@@ -91,10 +89,11 @@ function InstallPreReqs($RelativePath, $httpSource, $description = "")
 }
 
 #WinJS
-InstallPreReqs "www\scripts\frameworks\base.min.js" "http://cdnjs.cloudflare.com/ajax/libs/winjs/3.0.1/js/base.min.js" "WinJS dependencies"
-InstallPreReqs "www\scripts\frameworks\ui.min.js" "http://cdnjs.cloudflare.com/ajax/libs/winjs/3.0.1/js/ui.min.js"    "WinJS dependencies"
-InstallPreReqs "www\css\ui-dark.css" "http://cdnjs.cloudflare.com/ajax/libs/winjs/3.0.1/css/ui-dark.css"    "WinJS dependencies"
-InstallPreReqs "www\css\ui-light.css" "http://cdnjs.cloudflare.com/ajax/libs/winjs/3.0.1/css/ui-light.css"    "WinJS dependencies"
+InstallPreReqs "scripts\frameworks\base.min.js" "http://cdnjs.cloudflare.com/ajax/libs/winjs/3.0.1/js/base.min.js" "WinJS dependencies"
+InstallPreReqs "scripts\frameworks\ui.min.js" "http://cdnjs.cloudflare.com/ajax/libs/winjs/3.0.1/js/ui.min.js"    "WinJS dependencies"
+InstallPreReqs "css\ui-dark.css" "http://cdnjs.cloudflare.com/ajax/libs/winjs/3.0.1/css/ui-dark.css"    "WinJS dependencies"
+InstallPreReqs "css\ui-light.css" "http://cdnjs.cloudflare.com/ajax/libs/winjs/3.0.1/css/ui-light.css"    "WinJS dependencies"
+
 
 #cleanup
 Cleanup;

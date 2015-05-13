@@ -1,5 +1,3 @@
-## Copyright (c) Microsoft. All rights reserved.  Licensed under the MIT license. See LICENSE file in the project root for full license information.
-
 param([string]$ProjectRoot = $PsScriptRoot)
 
 $zipsCache = @{};
@@ -91,13 +89,13 @@ function InstallPreReqs($RelativePath, $httpSource, $description = "")
 }
 
 #jQuery
-InstallPreReqs "www\scripts\frameworks\jquery-2.1.0.min.js" "http://code.jquery.com/jquery-2.1.0.min.js" "jQuery dependencies";
+InstallPreReqs "scripts\frameworks\jquery-2.1.0.min.js" "http://code.jquery.com/jquery-2.1.0.min.js" "jQuery dependencies";
 
 #backbone
-InstallPreReqs "www\scripts\frameworks\backbone.min.js" "http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js" "backbone dependencies"
+InstallPreReqs "scripts\frameworks\backbone.min.js" "http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js" "backbone dependencies"
 
 #underscore
-InstallPreReqs "www\scripts\frameworks\underscore.min.js" "http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js" "underscore dependencies"
+InstallPreReqs "scripts\frameworks\underscore.min.js" "http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js" "underscore dependencies"
 
 #cleanup
 Cleanup; 
