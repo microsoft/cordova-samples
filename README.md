@@ -5,6 +5,8 @@ Leveraging the Apache Cordova framework, we create packaged mobile apps that fee
 
 This repository contains a number of Sample Apps that you can download and view.
 
+Note that you may also find tutorials available in our [cordova-docs](http://github.com/cordova-docs) repository of additional interest.
+
 ## Terms of Use
 By downloading and running this project, you agree to the license terms of the third party application software, Microsoft products, and components to be installed. 
 
