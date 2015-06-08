@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) Microsoft. All rights reserved.  
+  Licensed under the MIT license. See LICENSE file in the project root for full license information.
+-->
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="cordova-plugin-res-native"
+    version="0.0.1">
+    <name>res/native Support Plugin</name>
+    <description>Demo plugin that adds res/native support from Visual Studio Tools for Apache Cordova when using command line tools outside of VS.</description>
+    <license>MIT</license>
+    <keywords>cordova,taco,visualstudio,vs,visual,studio</keywords>
+    <repo></repo>
+    <issue></issue>
+
+    <!-- 
+      The following line will cause the contents of hooks/hook-res-native.js to be executed before any platform is "prepared" for  
+      compilation when this plugin is installed.  See http://go.microsoft.com/fwlink/?LinkID=533744 for additional details.
+    -->
+    <hook type="before_prepare" src="hooks/hook-res-native.js" />
+</plugin>

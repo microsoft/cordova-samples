@@ -1,0 +1,24 @@
+{
+    "cordova-plugin-res-native": {
+        "source": {
+            "type": "local",
+            "path": "C:\\Users\\clantz\\Source\\Repos\\[chuxel]cordova-samples\\cordova-hooks\\cordova-plugin-res-native"
+        }
+    },
+    "cordova-plugin-whitelist": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-whitelist@1.0.0"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-inappbrowser": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-inappbrowser@1.0.0"
+        },
+        "is_top_level": true,
+        "variables": {}
+    }
+}
