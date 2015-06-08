@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<!--
+  Copyright (c) Microsoft. All rights reserved.
+  Licensed under the MIT license. See LICENSE file in the project root for full license information.
+-->
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <title>Cordova Hooks Sample</title>
+
+    <link href="css/index.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Cordova Hooks Sample</h1>
+    <p>If you are reading this message, you've now built an app that fired two Cordova hooks. You can look at the Output Window in VS or your build command line output for a few strings to verify everything is working. Some messages will originate from an installed plugin while others will come from a hook in the project's "hooks" folder.</p>
+    <p>Here is what you can expect to see.</p>
+    <strong>Building for a Device from VS for Android, Windows, or WP8</strong>
+    <ul>
+        <li>You will see the following in the Output Window from the plugin: "<strong>Build running inside of MSBuild or Visual Studio - skipping res/native hook given built in support.</strong>" See "plugins/cordova-plugin-res-native" in your project further information. The hook is wired in through plugin.xml.</li>
+        <li>You should see the file <strong>res-native-works.txt</strong> in the "platforms\&lt;platform&gt;" folder where &lt;platform&gt; is the platform you built. This file comes from the res/native folder in the project.</li>
+    </ul>
+
+    <strong>Building from the command line using the Cordova CLI for Android, Windows, or WP8</strong>
+    <ul>
+        <li>You will see the following in the Output Window from the plugin: "<strong>Processing res/native for android</strong>," (where "android is replaced with the platform you used to build.") See "plugins/cordova-plugin-res-native" in your project further information. The hook is wired in through plugin.xml.</li>
+        <li>You should see the file <strong>res-native-works.txt</strong> in the "platforms\&lt;platform&gt;" folder where &lt;platform&gt; is the platform you built. This file comes from the res/native folder in the project.</li>
+    </ul>
+
+    <strong>Building for an iOS Device</strong>
+    <ul>
+        <li>You will see the following in the Output Window or build command line output from the project hook: "<strong>Detecting broken symlinks</strong>." See "hooks/hook-symlink-fix.js" in your project further information. The hook is wired in via config.xml in the project. Right Click => View Code to see the XML elements used to do it.</li>
+        <li>You will see the following in the Output Window or build command line output from the plugin: "<strong>Processing res/native for ios</strong>." See "plugins/cordova-plugin-res-native" in your project further information. The hook is wired in through plugin.xml.</li>
+        <li>You should see the file <strong>res-native-works.txt</strong> in the "remote-builds/&lt;buildnum&gt;/cordovaApp/platforms/ios" folder where &lt;buildnum&gt; is the build number you see in the Output Window if built using the remote agent. Otherwise the file will be under "platforms/ios". This file comes from the res/native folder in the project.</li>
+    </ul>
+
+    <h1>Files of Interest</h1>
+    <ul>
+        <li><strong>config.xml</strong> contains a reference to "hooks/hook-symlink-fix.js" that is wrapped in a platform element that causes the hook to only fire for iOS.</li>
+        <li><strong>hooks/hook-symlink-fix.js</strong> is an iOS specific fix to deal with broken symlinks described in <a href="https://github.com/Microsoft/cordova-docs/tree/master/tips-and-workarounds/ios/ios-plugin-symlink-fix">this article.</a> Note the use of context.requireCordovaModule to access some node modules. Anything referenced in <a href="https://github.com/apache/cordova-lib/blob/master/cordova-lib/package.json">package.json for cordova-lib</a> for the version of Cordova you are targeting is available to you via this mechanism.</li>
+        <li><strong>plugins/cordova-plugin-res-native/plugin.xml</strong> contains a reference to "hooks/hook-res-native.js" relative to the plugin root (plugins/cordova-plugin-res-native/hooks/hook-res-native.js). Since it is not wrapped in a platform element it will fire for all platforms.</li>
+        <li><strong>plugins/cordova-plugin-res-native/hooks/hook-res-native.js</strong> is a hook designed to ensure the res/native feature works outside of Visual Studio as described in the <a href="https://github.com/Microsoft/cordova-docs/tree/master/tutorial-team-build">Team Build / CI tutorial.</a></li>
+    </ul>
+
+    <script src="cordova.js"></script>
+
+    <script src="scripts/index.js"></script>
+</body>
+</html>
