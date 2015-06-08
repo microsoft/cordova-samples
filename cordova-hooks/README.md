@@ -2,7 +2,7 @@
 Visual Studio Tools for Apache Cordova combines the goodness of your favorite IDE with the ease of creating apps for multiple mobile operating systems, all in a simple to use workflow. One of the major pain points for our enterprise developers is the effort required to build apps for multiple platforms, while keeping costs and effort down. Visual Studio Tools for Apache Cordova allows developers to use HTML5 and JavaScript, along with their favorite open source framework libraries to build web applications.
 
 ##What is a Cordova Hook?
-One challenge that can exist in certain scenarios is that you need to be able to modify something fundamental about the Cordova project or move content around within the generated underlying native project. On the surface it may appear there is not a way to do this in Visual Studio or the Apache Cordova Command Line Interface (CLI) but this is not true.  You can in fact wire in your own into almost any Cordova event (or even CLI command) using something called a [Cordova Hook](http://go.microsoft.com/fwlink/?LinkID=533744).
+One challenge that can exist in certain scenarios is that you need to be able to modify something fundamental about the Cordova project or move content around within the generated underlying native project. On the surface it may appear there is not a way to do this in Visual Studio or the Apache Cordova Command Line Interface (CLI) but this is not true.  You can in fact wire in your own JavaScript based build scripts into almost any Cordova event (or even CLI command) using something called a [Cordova Hook](http://go.microsoft.com/fwlink/?LinkID=533744).
 
 Hooks can be added to your project in two ways:
 
