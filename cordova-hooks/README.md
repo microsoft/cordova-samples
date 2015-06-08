@@ -7,19 +7,19 @@ One challenge that can exist in certain scenarios is that you need to be able to
 Hooks can be added to your project in two ways:
 
 1. **Project Hooks** - Referenced in config.xml
-2. **Plugin Hooks** - Referenced in plugin.xml
+2. **Plugin Hooks** - Hooks contained inside a Cordova plugin and referenced in plugin.xml.
 
-When developing hooks it is often easiest to **first build the hook as a project hook** and **then migrate it to a plugin later.** Plugins allow you to reuse hooks in a modular fashion, are easier to install, and can be published publicly for easy access like other plugins. However, certain events only occur when a plugin is "installed" for a given platform which can complicate intial development.
+When developing hooks it is often easiest to **first build a project hook** and **then migrate it into a plugin later.** Plugins allow you to reuse hooks in a modular fashion, are easier to install, and can be published publicly for easy access like other plugins. However, certain events only occur when a plugin is "installed" for a given platform which can complicate intial development.
 
-Hooks are implemented as simple JavaScript modules that are then referenced in either your project's config.xml or plugin.xml. Ex:
+Hooks are implemented as simple JavaScript modules that are then referenced in either your project's config.xml or in a Cordova plugin's plugin.xml. Ex:
 
 ~~~~~~~~~~
 <hook type="before_prepare" src="hooks/hook-res-native.js" />
 ~~~~~~~~~~
 
-This will fire the hook in "hook-res-native.js" before a native project used to build a platform has been "prepared." "Prepare" is a key Cordova lifecycle event that is responsible for copying content from plugins and your project to an underlying generated native project (found in the "platforms" folder). 
+This XML tells the CLI to execute the hook in "hooks/hook-res-native.js" before the underlying native project used to build a given platform has been "prepared." "Prepare" is a key Cordova lifecycle event that is responsible for copying content from plugins and your project into an underlying generated native project (found in the "platforms" folder). 
 
-You may also want to fire a hook only for certain platforms. This an be done easily using the platform element.
+You may also want to execute a given hook only for certain platforms. This can be done easily using the platform element in either config.xml or plugin.xml. Ex:
 
 ~~~~~~~~~~
 <platform name="ios>
@@ -27,12 +27,11 @@ You may also want to fire a hook only for certain platforms. This an be done eas
 </platform>
 ~~~~~~~~~~
 
-This will fire the hook in hook-symlink-fix.js before compilation occurs but after the native project has been "prepared" only when building for iOS.
+This XML tells the CLI to execute the hook in "hooks/hook-symlink-fix.js" before compilation occurs but after the native project has been "prepared" but **only** when building for iOS.
 
-See the **[Cordova Hooks Readme](http://go.microsoft.com/fwlink/?LinkID=533744)** for additional details on creating hooks and a list of available events. 
+Note: While there is an older "shell script" based way to add hooks into your project, this is missing a number of useful features and requires an "execute bit" to be set on the script for iOS on OSX which makes authoring them on Windows challenging.
 
-While there is an older "shell script" based way to add hooks into your project, this is missing a number of useful features and requires an "execute bit" to be set on the script for iOS on OSX which makes authoring them on Windows challenging.
-
+Hooks are a powerful and flexible concept that can be used in a variety of events and even execute other Cordova commands. You won't use them every day, but they are hugely useful in certain circumsances. Hooks will run from any Cordova based CLI (ex: Ionic) or when using something like Gulp to run your CI builds. Note that project hooks do not currently work in PhoneGap Build. See the **[Cordova Hooks Readme](http://go.microsoft.com/fwlink/?LinkID=533744)** for additional details on creating hooks and a list of available events. 
 
 ##The Sample Project
 In this sample project you can find here has two hooks designed to deal with two documented, known issues. The sample project adds one hook via a plugin and another at the project level via config.xml.
