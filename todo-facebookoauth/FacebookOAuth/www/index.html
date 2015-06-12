@@ -33,16 +33,18 @@
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
             </div>
-            <div class="event listening button" onclick="login();">Login with Facebook</div>
-            <div class="event listening button" onclick="showDialog();">Show Dialog with Facebook</div>
-            <div class="event listening button" onclick="apiTest();">Test API with Facebook</div>
-            <div class="event listening button" onclick="getAccessToken();">Get access token with Facebook</div>
-            <div class="event listening button" onclick="getStatus();">Get login status with Facebook</div>
-            <div class="event listening button" onclick="logout();">Logout with Facebook</div>
+            <div class="event listening button" onclick="app.login();">Login with Facebook</div>
+            <div class="event listening button" onclick="app.showDialog();">Show Dialog with Facebook</div>
+            <div class="event listening button" onclick="app.apiTest();">Test API with Facebook</div>
+            <div class="event listening button" onclick="app.getAccessToken();">Get access token with Facebook</div>
+            <div class="event listening button" onclick="app.getStatus();">Get login status with Facebook</div>
+            <div class="event listening button" onclick="app.logout();">Logout with Facebook</div>
         </div>
         <div id="fb-root"></div>
+
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="scripts/index.js"></script>
         <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+        <script type="text/javascript" src="scripts/facebookSignIn.js"></script>
     </body>
 </html>
