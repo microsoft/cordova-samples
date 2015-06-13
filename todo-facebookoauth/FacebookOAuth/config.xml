@@ -15,6 +15,7 @@
     <icon src="res/icons/android/icon-96-xhdpi.png" density="xhdpi" />
   </platform>
   <platform name="ios">
+    <hook type="before_compile" src="hooks/hook-symlink-fix.js" />
     <!-- iOS 8.0+ -->
     <!-- iPhone 6 Plus  -->
     <icon src="res/icons/ios/icon-60-3x.png" width="180" height="180" />
@@ -93,7 +94,7 @@
   <preference name="ShowTitle" value="False" />
   <preference name="InAppBrowserStorageEnabled" value="True" />
   <preference name="SuppressesIncrementalRendering" value="False" />
-  <vs:plugin name="com.phonegap.plugins.facebookconnect" version="0.11.0" src="https://github.com/Wizcorp/phonegap-facebook-plugin">
+  <vs:plugin name="com.phonegap.plugins.facebookconnect" version="0.11.0" src="https://github.com/Wizcorp/phonegap-facebook-plugin.git">
     <param name="APP_ID" value="1592999164273249" />
     <param name="APP_NAME" value="TACO" />
   </vs:plugin>
