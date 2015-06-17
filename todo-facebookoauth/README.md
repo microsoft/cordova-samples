@@ -16,6 +16,9 @@ You can download [VS Community 2015 RC in English](http://go.microsoft.com/fwlin
 
 Press F5 and you're on your way! If you haven't already done so, consider taking a look at our landing page for more information (http://go.microsoft.com/fwlink/?LinkID=398477).
 
+#### Code Walkthrough
+For a detailed explanation of the code see [Sample Code Walkthrough](Walkthrough.md)
+
 #### Dependencies
 When you run the app for the first time, the [phonegap-facebook-pluin](https://github.com/wizcorp/phonegap-facebook-plugin) is downloaded and installed. You will need to have a working internet connection for the installation to happen successfully. This step is performed by the CLI as this plugin is referenced in the config.xml file.
 
