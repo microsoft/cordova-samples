@@ -7,7 +7,7 @@ The FacebookOAuth sample helps you get up and running with an app that you can F
 
 
 ## Building the Sample
-### [optional] Facebook Application ID and Application Name
+### Facebook Application ID and Application Name
 For simplicity we added a sample APP_ID and APP_NAME to the config.xml file so that you can build and deploy the application out of the box. You can also create or use your own application [https://developers.facebook.com/apps](https://developers.facebook.com/apps). If you don't change the default APP_ID, APP_NAME when you sign into the FacebookOAuth sample app it will ask you to grant permission to a Facebook app called "TACO".
 
 
@@ -23,8 +23,14 @@ For a detailed explanation of the code see [Sample Code Walkthrough](Walkthrough
 When you run the app for the first time, the [phonegap-facebook-pluin](https://github.com/wizcorp/phonegap-facebook-plugin) is downloaded and installed. You will need to have a working internet connection for the installation to happen successfully. This step is performed by the CLI as this plugin is referenced in the config.xml file.
 
 
-### Known Issues
-- This sample only runs on VS Android emulators, it doesn't run on Ripple. 
+### Tested on
+| Platform | Emulator                       |
+|:--------:|:------------------------------:|
+| Android  | Google Android Emulator        |
+| Android  | VS Emulator 5” KitKat Phone    |
+| Android  | VS Emulator 5” Lollipop Phone  |
+| Android  | VS Emulator 7” KitKat Tablet   |
+| Android  | VS Emulator 7” Lollipop Tablet |
 
 
 ## Terms of Use
