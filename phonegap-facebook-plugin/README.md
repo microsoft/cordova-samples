@@ -7,7 +7,7 @@ The FacebookOAuth sample helps you get up and running with an app that you can F
 
 
 ## Building the Sample
-### [optional] Facebook Application ID and Application Name
+### Facebook Application ID and Application Name
 For simplicity we added a sample APP_ID and APP_NAME to the config.xml file so that you can build and deploy the application out of the box. You can also create or use your own application [https://developers.facebook.com/apps](https://developers.facebook.com/apps). If you don't change the default APP_ID, APP_NAME when you sign into the FacebookOAuth sample app it will ask you to grant permission to a Facebook app called "TACO".
 
 
