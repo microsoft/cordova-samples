@@ -1,4 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.  Licensed under the MIT license. See LICENSE file in the project root for full license information.
+// This code was originally based on the code samples provided by the phonegap-facebook-plugin 
+//  For more information see https://github.com/Wizcorp/phonegap-facebook-plugin
 
 (function () {
     "use strict";
