@@ -12,7 +12,14 @@
         document.addEventListener('pause', onPause.bind(this), false);
         document.addEventListener('resume', onResume.bind(this), false);
 
-        // TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
+        // Cordova has been loaded. Initializing UI
+        document.getElementById("login").addEventListener('click', app.login)
+        document.getElementById("showDialog").addEventListener('click', app.showDialog)
+        document.getElementById("apiTest").addEventListener('click', app.apiTest)
+        document.getElementById("getAccessToken").addEventListener('click', app.getAccessToken)
+        document.getElementById("getStatus").addEventListener('click', app.getStatus)
+        document.getElementById("logout").addEventListener('click', app.logout)
+
         var parentElement = document.getElementById('deviceReadyIndicator');
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
