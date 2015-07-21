@@ -10,7 +10,3 @@
         document.head.appendChild(scriptElem);
     }
 }());
-
-var platformAlert = function (message) {
-    Windows.UI.Popups.MessageDialog(message).showAsync();
-};

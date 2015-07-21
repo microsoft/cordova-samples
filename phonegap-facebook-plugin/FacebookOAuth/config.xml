@@ -90,11 +90,13 @@
     <splash src="res/screens/wp8/SplashScreenImage.jpg" width="480" height="800" />
   </platform>
   <preference name="KeepRunning" value="True" />
-  <preference name="ShowTitle" value="False" />
-  <preference name="InAppBrowserStorageEnabled" value="True" />
-  <preference name="SuppressesIncrementalRendering" value="False" />
-  <vs:plugin name="com.phonegap.plugins.facebookconnect" version="0.11.0" src="https://github.com/Wizcorp/phonegap-facebook-plugin.git">
+  <preference name="ShowTitle" value="True" />
+  <preference name="InAppBrowserStorageEnabled" value="False" />
+  <preference name="SuppressesIncrementalRendering" value="True" />
+  <vs:plugin name="com.phonegap.plugins.facebookconnect" version="0.11.0">
     <param name="APP_ID" value="1592999164273249" />
     <param name="APP_NAME" value="TACO" />
   </vs:plugin>
+  <preference name="Fullscreen" value="False" />
+  <vs:plugin name="org.apache.cordova.dialogs" version="0.3.0" />
 </widget>
