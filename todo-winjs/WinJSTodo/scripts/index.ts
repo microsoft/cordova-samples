@@ -1,19 +1,34 @@
-﻿/***
-    Copyright (c) Microsoft. All rights reserved.  Licensed under the MIT license. See LICENSE file in the project root for full license information.
-*/
-
-///<reference path='..\..\packages\cordova.TypeScript.DefinitelyTyped.2.3.3\Content\Scripts\typings\cordova\cordova.d.ts' />
-///<reference path='..\..\packages\winjs.TypeScript.DefinitelyTyped.0.1.9\Content\Scripts\typings\winjs\winjs.d.ts'/>
-///<reference path='..\..\packages\azure-mobile-services-client.TypeScript.DefinitelyTyped.0.8.6\Content\Scripts\typings\azure-mobile-services-client\AzureMobileServicesClient.d.ts'/>
-/// <reference path="services.ts" />
-/// <reference path="todo.ts" />
-
+﻿// For an introduction to the Blank template, see the following documentation:
+// http://go.microsoft.com/fwlink/?LinkID=397705
+// To debug code on page load in Ripple or on Android devices/emulators: launch your app, set breakpoints, 
+// and then run "window.location.reload()" in the JavaScript Console.
 module Todo {
-  "use strict";
+    "use strict";
 
-  /**
-   * Container for app state
-   */
-  export var app: ToDo = new ToDo();
+    export module Application {
+        export function initialize() {
+            document.addEventListener('deviceready', onDeviceReady, false);
+        }
 
+        function onDeviceReady() {
+            // Handle the Cordova pause and resume events
+            document.addEventListener('pause', onPause, false);
+            document.addEventListener('resume', onResume, false);
+
+            // TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
+        }
+
+        function onPause() {
+            // TODO: This application has been suspended. Save application state here.
+        }
+
+        function onResume() {
+            // TODO: This application has been reactivated. Restore application state here.
+        }
+
+    }
+
+    window.onload = function () {
+        Application.initialize();
+    }
 }
