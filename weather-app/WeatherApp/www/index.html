@@ -12,6 +12,22 @@
 
     <!-- WeatherApp references -->
     <link href="css/index.css" rel="stylesheet" />
+    <style type="text/css">
+        body {
+            font: 1em Sans-Serif;
+        }
+
+        .flex {
+            display: -webkit-box;
+            display: flex;
+        }
+
+            .flex > div:nth-child(2) {
+                -webkit-flex-grow: 1;
+                flex-grow: 1;
+                text-align: right;
+            }
+    </style>
 </head>
 <body>
     <!-- Cordova reference, this is added to your app when it's built. -->
@@ -22,41 +38,43 @@
     <script src="scripts/weather.js"></script>
 
     <h1 id="app-title">Weather App</h1>
-    <table cellpadding="5" class="appfont">
-        <tr>
-            <td>Zip Code: </td>
-            <td><input id="input-box" /></td>
-            <td><button id="get-weather">Get Weather</button></td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <td colspan="2"><h3 id="description">Get the Weather</h3></td>
-        </tr>
-        <tr>
-            <td>Temp:</td>
-            <td align="right"><div id="temp"></div></td>
-        </tr>
-        <tr>
-            <td>Wind:</td>
-            <td align="right"><div id="wind"></div></td>
-        </tr>
-        <tr>
-            <td>Humidity:</td>
-            <td align="right"><div id="humidity"></div></td>
-        </tr>
-        <tr>
-            <td>Visibility:</td>
-            <td align="right"><div id="visibility"></div></td>
-        </tr>
-        <tr>
-            <td>Sunrise:</td>
-            <td align="right"><div id="sunrise"></div></td>
-        </tr>
-        <tr>
-            <td>Sunset:</td>
-            <td align="right"><div id="sunset"></div></td>
-        </tr>
-    </table>
+
+    <div>
+        <label for="zip-code">Zip Code:</label>
+        <input type="text" id="input-box" />
+        <button id="get-weather">Get Weather</button>
+    </div>
+
+    <h3 id="description">Get the Weather</h3>
+
+    <div class="flex">
+        <div>Temp</div>
+        <div id="temp"></div>
+    </div>
+
+    <div class="flex">
+        <div>Wind:</div>
+        <div id="wind"></div>
+    </div>
+
+    <div class="flex">
+        <div>Humidity:</div>
+        <div id="humidity"></div>
+    </div>
+
+    <div class="flex">
+        <div>Visibility:</div>
+        <div id="visibility"></div>
+    </div>
+
+    <div class="flex">
+        <div>Sunrise:</div>
+        <div id="sunrise"></div>
+    </div>
+
+    <div class="flex">
+        <div>Sunset:</div>
+        <div id="sunset"></div>
+    </div>
 </body>
 </html>
