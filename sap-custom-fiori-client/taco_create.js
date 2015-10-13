@@ -1,8 +1,5 @@
 #!/usr/bin/env node
-/*
-  Copyright (c) Microsoft. All rights reserved.  
-  Licensed under the MIT license. See LICENSE file in the project root for full license information.
-*/
+
 var fs = require('fs'),
     path = require('path'),
     os = require('os'),
@@ -67,6 +64,14 @@ if (config.platforms.indexOf("android") >= 0) {
     copyIfExists(path.join(__dirname, 'assets', 'android', 'drawable-port-mdpi', 'screen.png'), path.join(screenPath,'splash-port-mdpi.png'));
     copyIfExists(path.join(__dirname, 'assets', 'android', 'drawable-port-xhdpi', 'screen.png'), path.join(screenPath,'splash-port-xhdpi.png'));
     copyIfExists(path.join(__dirname, 'assets', 'android', 'drawable-port-xxhdpi', 'screen.png'), path.join(screenPath,'splash-port-xxhdpi.png'));
+    // Patch prepare_restriction.js and build.gradle due to a bug
+    var prepareRestriction=path.join(projectPath, 'platforms', 'android', 'prepare_restriction.js');
+    shelljs.sed('-i', /com\.uphyca\.gradle:gradle-android-aspectj-plugin:0\.9\.\+/gm, 'com.uphyca.gradle:gradle-android-aspectj-plugin:0.9.12', prepareRestriction);
+    shelljs.sed('-i', /com\.uphyca\.gradle:gradle-android-aspectj-plugin:0\.9\.\+/gm, 'com.uphyca.gradle:gradle-android-aspectj-plugin:0.9.12', path.join(projectPath, 'platforms', 'android', 'CordovaLib', 'build.gradle'));
+    // Move prepare_restriction.js to a hook so it runs after platform add if the Android platform is removed
+    var hooksFolder = constructAndJoin([projectPath, 'hooks']);
+    var hookContent = 'module.exports=function(context) { '+ fs.readFileSync(prepareRestriction, 'utf8') +' }';
+    fs.writeFileSync(path.join(hooksFolder, 'prepare_restriction.js'),hookContent, 'utf8');
     // Update config.xml
     shelljs.sed('-i', '<content src="index.html" />', fs.readFileSync(path.join(__dirname, 'append', 'config-xml-android-append.txt'), 'utf8'), configxml);
 } 
