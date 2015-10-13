@@ -14,7 +14,7 @@ You can build and edit these apps in Visual Studio Tools for Apache Cordova or V
 1. First, if you intend to build an Android version of your app:
 
 	1. Be sure to install the "Google Play Repository" (under extras) via the Android SDK Manager
-	2. Bump up your Java heap to at least 1024M - 512 not enough. (_JAVA_OPTIONS=-Xmx1024M)
+	2. Install a 64-bit JVM and bump up your Java heap to 1500M - the 512M default is not enough. (_JAVA_OPTIONS=-Xmx1500M). You may need to restart for these settings to take effect.
 	
 2. Next, download the SAP Mobile SDK (or a [free trial from the SAP Store](https://store.sap.com/sap/cp/ui/resources/store/html/SolutionDetails.html?pid=0000013098&catID=&pcntry=US&sap-language=EN&_cp_id=id-1409756206625-0)) and install it on your machine. This script was written and tested on **SAP Mobile SDK 3.0 SP10.**
 

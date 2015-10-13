@@ -24,7 +24,11 @@ var config;
 if(argv[0].indexOf('create_fiori_client.js') >= 0) {
     config = require(path.join(cwd,'config.json'));    
 } else {
-    config = require(argv[0]);    
+    if(argv[0].indexOf('json') >= 0) {
+        config = require(argv[0]);      
+    } else {
+        config = require(path.join(cwd,'config.json'));            
+    }
 }
 var projectPath = path.resolve(config.targetFolder);
 var configxml = path.join(projectPath, 'config.xml');
