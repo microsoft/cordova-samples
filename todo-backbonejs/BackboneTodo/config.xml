@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="io.cordova.myapp123ad8" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" defaultlocale="en-US">
   <name>BackboneToDo</name>
   <description>A blank project that uses Apache Cordova to help you build an app that targets multiple mobile platforms: Android, iOS, Windows, and Windows Phone.</description>
@@ -91,4 +91,5 @@
   </platform>
   <vs:plugin name="com.microsoft.azure-mobile-services" version="1.2.8" />
   <vs:plugin name="org.apache.cordova.geolocation" version="0.3.12" />
+  <vs:plugin name="cordova-plugin-whitelist" version="1.0.0" />
 </widget>
