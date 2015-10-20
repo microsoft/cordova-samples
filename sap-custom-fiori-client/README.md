@@ -34,18 +34,8 @@ You can build and edit these apps in Visual Studio Tools for Apache Cordova or V
 ##[Optional Alternative] Building a Custom Cordova App Using SAP Plugins
 If you would prefer to use SAP plugins without the Custom Fiori Client script, you can do that too by following these steps:
 
-1. Ensure you are using Cordova 5.1.1 or 5.3.3 (or likely later). There are known issues with 5.2.0 and 5.3.1.
-1. Add .cordova/config.json to your project with the following contents:
-
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-{
-	"plugin_search_path":"C:\\SAP\\KapselSDK\\plugins"
-}
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-	... replacing the path with where you unzipped the Kapsel SDK. This can be done with existing apps too.
-
-2. You may now add plugins from the "plugins" folder of the Kapsel SDK.  API documentation can be found under "docs/api".
+1. Add [samples/.cordova/config.json](./samples/.cordova/config.json) to a .cordova folder in the root of your project and update the path to point to your SAP KapselSDK plugins folder (Ex: "C:\\SAP\\KapselSDK\\plugins")
+3. You may now add plugins from the "plugins" folder of the Kapsel SDK.  API documentation can be found under "docs/api".
 
 ## Known Issues
 - Windows and Windows Phone 8.0 are not supported by the Custom Fiori Client creation script today
