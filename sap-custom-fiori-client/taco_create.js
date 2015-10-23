@@ -71,6 +71,7 @@ if (config.platforms.indexOf("android") >= 0) {
     // Move prepare_restriction.js to a hook so it runs after platform add if the Android platform is removed
     var hooksFolder = constructAndJoin([projectPath, 'hooks']);
     var hookContent = 'module.exports=function(context) { '+ fs.readFileSync(prepareRestriction, 'utf8') +' }';
+    hookContent = hookContent.replace("require('shelljs')","context.requireCordovaModule('shelljs')");
     fs.writeFileSync(path.join(hooksFolder, 'prepare_restriction.js'),hookContent, 'utf8');
     // Update config.xml
     shelljs.sed('-i', '<content src="index.html" />', fs.readFileSync(path.join(__dirname, 'append', 'config-xml-android-append.txt'), 'utf8'), configxml);
