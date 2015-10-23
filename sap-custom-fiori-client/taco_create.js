@@ -1,5 +1,8 @@
 #!/usr/bin/env node
-
+/*
+  Copyright (c) Microsoft. All rights reserved.  
+  Licensed under the MIT license. See LICENSE file in the project root for full license information.
+*/
 var fs = require('fs'),
     path = require('path'),
     os = require('os'),
@@ -13,7 +16,7 @@ process.argv=argv;
 // First run the fiori script
 require('./create_fiori_client.js');
 
-console.log('Project created. Migrating content to res/native so platforms do not need to be checked in');
+console.log('Project created. Migrating content in platforms folder to root project and adding hooks.');
 
 // re-grab config so we have locations
 process.chdir(cwd);
@@ -28,17 +31,27 @@ if(argv[0].indexOf('create_fiori_client.js') >= 0) {
     }
 }
 var projectPath = path.resolve(config.targetFolder);
+var hooksFolder = constructAndJoin([projectPath, 'hooks']);
 var configxml = path.join(projectPath, 'config.xml');
 var res = path.join(projectPath, 'res');
-console.log('Project res path: ' + res);
 
 if (config.platforms.indexOf("ios") >= 0) {
-    shelljs.cp('-f',  path.join(__dirname, 'assets', 'Root.plist'), constructAndJoin([res, 'native', 'ios', config.appName, 'Resources', 'Settings.bundle']));
     // Move icons and splash screens to standard Cordova location and update config.xml to use correct Cordova elements
     shelljs.cp('-Rf', path.join(__dirname, 'assets', 'ios', 'icons', '*'), constructAndJoin([res,'icons', 'ios']));
     shelljs.cp('-Rf', path.join(__dirname, 'assets', 'ios', 'splash', '*'), constructAndJoin([res,'screens', 'ios']));
     // Update config.xml
-    shelljs.sed('-i', '<content src="index.html" />', fs.readFileSync(path.join(__dirname, 'append', 'config-xml-ios-append.txt'),'utf8'), configxml);
+    shelljs.sed('-i', '<content src="index.html" />', fs.readFileSync(path.join(__dirname, 'lib', 'config-xml-ios-append.txt'),'utf8'), configxml);
+    
+    // Improve Xcode 7 compat using VS's handy res/native feature - See http://taco.visualstudio.com/en-us/docs/known-issues-ios
+    var xcconfig = fs.readFileSync(path.join(projectPath, 'platforms', 'ios', 'cordova','build.xcconfig'), 'utf8');
+    xcconfig = xcconfig.replace(/CODE_SIGN_RESOURCE_RULES_PATH = \$\(SDKROOT\)\/ResourceRules\.plist/gm,'');
+    xcconfig += '\nENABLE_BITCODE=NO\nCLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES=YES\n';
+    var iosResNatveCordova = constructAndJoin([res, 'native', 'ios', 'cordova']);
+    fs.writeFileSync(path.join(iosResNatveCordova, 'build.xcconfig'), xcconfig, 'utf8');
+      
+    // Copy content and hook to add plist after platform add
+    shelljs.cp('-f', path.join(__dirname, 'lib', 'hook-ios-plist-cp.js'), hooksFolder);
+    shelljs.cp('-f',  path.join(__dirname, 'assets', 'Root.plist'), constructAndJoin([hooksFolder, 'ios', config.appName, 'Resources', 'Settings.bundle']));
 }
 
 if (config.platforms.indexOf("android") >= 0) {
@@ -69,17 +82,17 @@ if (config.platforms.indexOf("android") >= 0) {
     shelljs.sed('-i', /com\.uphyca\.gradle:gradle-android-aspectj-plugin:0\.9\.\+/gm, 'com.uphyca.gradle:gradle-android-aspectj-plugin:0.9.12', prepareRestriction);
     shelljs.sed('-i', /com\.uphyca\.gradle:gradle-android-aspectj-plugin:0\.9\.\+/gm, 'com.uphyca.gradle:gradle-android-aspectj-plugin:0.9.12', path.join(projectPath, 'platforms', 'android', 'CordovaLib', 'build.gradle'));
     // Move prepare_restriction.js to a hook so it runs after platform add if the Android platform is removed
-    var hooksFolder = constructAndJoin([projectPath, 'hooks']);
     var hookContent = 'module.exports=function(context) { '+ fs.readFileSync(prepareRestriction, 'utf8') +' }';
     hookContent = hookContent.replace("require('shelljs')","context.requireCordovaModule('shelljs')");
     fs.writeFileSync(path.join(hooksFolder, 'prepare_restriction.js'),hookContent, 'utf8');
     // Update config.xml
-    shelljs.sed('-i', '<content src="index.html" />', fs.readFileSync(path.join(__dirname, 'append', 'config-xml-android-append.txt'), 'utf8'), configxml);
+    shelljs.sed('-i', '<content src="index.html" />', fs.readFileSync(path.join(__dirname, 'lib', 'config-xml-android-append.txt'), 'utf8'), configxml);
 } 
 
-//Add vs:plugin elements - Technically optional.
+//Add hook for res-native, vs:plugin elements
+shelljs.cp('-f', path.join(__dirname, 'lib', 'hook-res-native.js'), hooksFolder);
 shelljs.sed('-i', 'xmlns="http://www.w3.org/ns/widgets"', 'xmlns="http://www.w3.org/ns/widgets" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps"', configxml);
-shelljs.sed('-i', '<content src="index.html" />', fs.readFileSync(path.join(__dirname, 'append', 'config-xml-append.txt'),'utf8'), configxml);
+shelljs.sed('-i', '<content src="index.html" />', fs.readFileSync(path.join(__dirname, 'lib', 'config-xml-append.txt'),'utf8'), configxml);
 
 // Create taco.json, .cordova/config.json - Technically optional
 fs.writeFileSync(path.join(projectPath, 'taco.json') ,'{\n\t"cordova-cli": "5.1.1"\n}', 'utf8');
