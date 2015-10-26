@@ -95,7 +95,7 @@ shelljs.sed('-i', 'xmlns="http://www.w3.org/ns/widgets"', 'xmlns="http://www.w3.
 shelljs.sed('-i', '<content src="index.html" />', fs.readFileSync(path.join(__dirname, 'lib', 'config-xml-append.txt'),'utf8'), configxml);
 
 // Create taco.json, .cordova/config.json - Technically optional
-fs.writeFileSync(path.join(projectPath, 'taco.json') ,'{\n\t"cordova-cli": "5.1.1"\n}', 'utf8');
+fs.writeFileSync(path.join(projectPath, 'taco.json') ,'{\n\t"cordova-cli": "5.2.0"\n}', 'utf8');
 var dotCordova = path.join(projectPath, '.cordova');
 if(!fs.existsSync(dotCordova)) fs.mkdirSync(dotCordova);
 var pluginPath = path.resolve(__dirname,'..','..','plugins').replace(/\\/g,'\\\\');
