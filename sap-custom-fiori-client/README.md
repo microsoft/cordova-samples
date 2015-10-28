@@ -46,7 +46,7 @@ If you would prefer to use SAP plugins without the Custom Fiori Client script, y
 1. Download [samples/.cordova/config.json](http://go.microsoft.com/fwlink/?LinkID=691677). **Note: Download, do not cut and paste from the web.** Copying from the web can result in unexpected characters in the file that can cause Cordova errors.
 2. Place it in a **.cordova** folder in the root of your project
 3. Update the path in this file to point to your SAP KapselSDK plugins folder (Ex: "C:\\SAP\\KapselSDK\\plugins").
-4. You may now add plugins from the "plugins" folder of the Kapsel SDK.  API documentation can be found [on SAP's website](http://go.microsoft.com/fwlink/?LinkID=691664).
+4. You may now add plugins from the "plugins" folder of the Kapsel SDK using the "Custom" tab in the config.xml designer.  API documentation can be found [on SAP's website](http://go.microsoft.com/fwlink/?LinkID=691664).
 
 ## Known Issues
 - Custom Fiori Clients make use of quite a few custom Cordova plugins, so you will want to be sure to pick an Android or iOS device or emulator / simulator target when debugging your app. Ripple will not be able to simulate the app.
