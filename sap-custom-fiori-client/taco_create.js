@@ -45,7 +45,7 @@ if (config.platforms.indexOf("ios") >= 0) {
     // Improve Xcode 7 compat using VS's handy res/native feature - See http://taco.visualstudio.com/en-us/docs/known-issues-ios
     var xcconfig = fs.readFileSync(path.join(projectPath, 'platforms', 'ios', 'cordova','build.xcconfig'), 'utf8');
     xcconfig = xcconfig.replace(/CODE_SIGN_RESOURCE_RULES_PATH = \$\(SDKROOT\)\/ResourceRules\.plist/gm,'');
-    xcconfig += '\nENABLE_BITCODE=NO\nCLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES=YES\n';
+    xcconfig += '\nENABLE_BITCODE=NO\nCLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES=YES\nARCHS=armv7 arm64\n';
     var iosResNatveCordova = constructAndJoin([res, 'native', 'ios', 'cordova']);
     fs.writeFileSync(path.join(iosResNatveCordova, 'build.xcconfig'), xcconfig, 'utf8');
       
