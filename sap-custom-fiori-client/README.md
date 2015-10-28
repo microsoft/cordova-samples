@@ -33,7 +33,7 @@ You can build and edit these apps in Visual Studio [Tools for Apache Cordova](ht
 
 3. **Visual Studio:** 
 	1. At this point you can install Visual Studio 2015, select the Tools for Apache Cordova option. **Be sure you are running at least Tools for Apache Cordova Update 4.**
-	2. Next, simply open the project in Visual Studio using the *File &gt; New &gt; Project From Existing Code...* option. 
+	2. Next, simply open the project in Visual Studio using the **File &gt; New &gt; Project From Existing Code...** option. 
 
 4. **VS Code or other Text Editor:** Follow these steps:
 	1.	Install the [taco-cli](http://go.microsoft.com/fwlink/?LinkID=691672) and use it to help you install any pre-requisites
