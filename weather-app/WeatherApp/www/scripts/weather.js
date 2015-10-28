@@ -57,12 +57,13 @@ var onSuccess = function (position) {
             var zipCode = results.query.results.Result.uzip
             $('#input-box').val(zipCode);
 
+            $('#description').text("Get the Weather");
+            $('#get-weather').prop("disabled", false);
+
          }
 
     });
 
-    $('#description').text("Get the Weather");
-    $('#get-weather').prop("disabled", false);
 }
 
 function onError(error) {
