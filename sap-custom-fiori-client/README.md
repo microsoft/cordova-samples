@@ -18,7 +18,7 @@ You can build and edit these apps in Visual Studio [Tools for Apache Cordova](ht
 
 	3. Bump up your Java heap to 1500M - the 512M default is not enough. To do so, set an environment variable of **_JAVA_OPTIONS=-Xmx1500M**. You may need to restart for these settings to take effect.
 	
-2. Next, download the **SAP Mobile SDK 3.0 SP 10** (or a [free trial from the SAP Store](http://go.microsoft.com/fwlink/?LinkID=691663) and install it on your machine.
+2. Next, download the **SAP Mobile SDK 3.0 SP 10** (or a [free trial from the SAP Store](http://go.microsoft.com/fwlink/?LinkID=691663)) and install it on your machine.
 
 3. At this point you may [build a Custom Fiori Mobile Client in VS or VS Code](#custom) or simply [add SAP plugins to your Cordova project](#plugins).
 
