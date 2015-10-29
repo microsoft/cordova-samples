@@ -10,8 +10,6 @@
         if (results.query.count > 0) {
             var weather = results.query.results.channel;
 
-            console.log(weather);
-
             $('#description').text(weather.description);
 
             var wind = weather.wind;
@@ -32,12 +30,13 @@
 
 function getLocation() {
 
-    $('#app-title').text("Android Weather App");
-
     navigator.geolocation.getCurrentPosition(onSuccess, onError, { enableHighAccuracy: true });
 
     $('#description').text("Determining your current location ...");
     $('#get-weather').prop("disabled", true);
+
+    $('#app-title').text("Android Weather App");
+    
 }
 
 var onSuccess = function (position) {
@@ -48,8 +47,8 @@ var onSuccess = function (position) {
     // Get zipCode by using latitude and longitude.
 
     var queryString = "https://query.yahooapis.com/v1/public/yql?q=" +
-        "select%20*%20from%20geo.placefinder%20where%20text%3D%22" + latitude +
-        "%2C" + longitude + "%22%20and%20gflags%3D%22R%22" + "&format=json";
+       "select%20*%20from%20geo.placefinder%20where%20text%3D%22" + latitude +
+       "%2C" + longitude + "%22%20and%20gflags%3D%22R%22" + "&format=json";
 
     $.getJSON(queryString, function (results) {
 
@@ -59,16 +58,16 @@ var onSuccess = function (position) {
             var zipCode = results.query.results.Result.uzip
             $('#input-box').val(zipCode);
 
-         }
+            $('#description').text("Get the Weather");
+            $('#get-weather').prop("disabled", false);
+
+        }
 
     });
 
-    $('#description').text("Get the Weather");
-    $('#get-weather').prop("disabled", false);
 }
 
 function onError(error) {
     console.log('code: ' + error.code + '\n' +
-        'message: ' + error.message + '\n');
+      'message: ' + error.message + '\n');
 }
-
