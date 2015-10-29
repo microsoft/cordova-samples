@@ -11,7 +11,7 @@ You can build and edit these apps in Visual Studio [Tools for Apache Cordova](ht
 
 ###Before You Begin
 
-1. First, if you intend to build an Android version of your app:
+1. First, if you intend to build an Android version of your app on Windows you will need to install and configure some dependencies:
 
 	1. Be sure to install the **Google Repository** and **Google Play Services** (under extras) via the Android SDK Manager (Typically you should run "C:\Program Files (x86)\Android\android-sdk\SDK Manager.exe" as Administrator.)
 	2. Install a version of the Windows **[64-bit JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html)** and set your JAVA_HOME environment variable to its location. When using Visual Studio, verify **Tools &gt; Options &gt; Tools for Apache Cordova &gt; Environment Variable Overrides** shows this JAVA_HOME location and override it if not.
