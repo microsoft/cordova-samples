@@ -12,8 +12,6 @@
 
             $('#description').text(weather.description);
 
-            console.log(weather.description);
-
             var wind = weather.wind;
             $('#temp').text(wind.chill);
             $('#wind').text(wind.speed);
@@ -46,8 +44,8 @@ var onSuccess = function (position) {
     // Get zipCode by using latitude and longitude.
 
     var queryString = "https://query.yahooapis.com/v1/public/yql?q=" +
-        "select%20*%20from%20geo.placefinder%20where%20text%3D%22" + latitude +
-        "%2C" + longitude + "%22%20and%20gflags%3D%22R%22" + "&format=json";
+       "select%20*%20from%20geo.placefinder%20where%20text%3D%22" + latitude +
+       "%2C" + longitude + "%22%20and%20gflags%3D%22R%22" + "&format=json";
 
     $.getJSON(queryString, function (results) {
 
@@ -60,7 +58,7 @@ var onSuccess = function (position) {
             $('#description').text("Get the Weather");
             $('#get-weather').prop("disabled", false);
 
-         }
+        }
 
     });
 
@@ -68,6 +66,5 @@ var onSuccess = function (position) {
 
 function onError(error) {
     console.log('code: ' + error.code + '\n' +
-        'message: ' + error.message + '\n');
+      'message: ' + error.message + '\n');
 }
-
