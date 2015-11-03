@@ -27,17 +27,25 @@ You can build and edit these apps in Visual Studio [Tools for Apache Cordova](ht
 
 1. First, place the **taco_create.js** and the **lib** folder in the **KapselSDK/apps/fiori_client** folder where you installed the SAP Mobile SDK
 
-2. Next, **[follow the instructions on SAP's site](http://go.microsoft.com/fwlink/?LinkID=691661)** or (simply follow the instructions in README.md in the fiori_client folder) to configure the client generation script in this folder but type **node taco_create.js** instead of create_fiori_client.js.
+2. Next, **[follow the instructions on SAP's site](http://go.microsoft.com/fwlink/?LinkID=691661)** or (simply follow the instructions in README.md in the fiori_client folder) to configure the client generation script in this folder but type **node taco_create.js** instead of create_fiori_client.js. Summary:
 
-	> This script copies a few files that are placed inside the "platforms" folder directly by the Fiori client script into the main project so the platforms folder does not need to be added to source control and for improved iOS compatibility when remotely building from Windows.
+	1. Install Node.js 0.12.x and version 5.2.0 of the Cordova CLI. (npm install -g cordova@5.2.0)
+
+	2. Update config.json in the KapselSDK\apps\fiori_client folder with your package name / ID, target folder for the project, app name, and platforms. Only Android and iOS are currently supported with Windows coming soon. Note that targetFolder must be a **relative path** not absolute.
+	
+	3. Run "node taco_create.js" from this same folder. Like create_fiori_client.js, the script will take some time to execute.
+
+		> This script first runs create_fiori_client.js and then copies a few files that are placed inside the "platforms" folder directly by the Fiori client script into the main project so the platforms folder does not need to be added to source control and for improved iOS compatibility when remotely building from Windows.
 
 3. **Visual Studio:** 
 	1. At this point you can install Visual Studio 2015, select the Tools for Apache Cordova option. **Be sure you are running at least Tools for Apache Cordova Update 4.**
 	2. Next, simply open the project in Visual Studio using the **File &gt; New &gt; Project From Existing Code...** option. 
+	3. Be aware that your first build in particular will take quite a while given the project contains around 43mb of plugin code that needs to be compiled.
 
 4. **VS Code or other Text Editor:** Follow these steps:
-	1.	Install the [taco-cli](http://go.microsoft.com/fwlink/?LinkID=691672) and use it to help you install any pre-requisites
-	2.	Simply open the folder containing your project in VS code or your text editor and start editing!  Use the taco-cli to build and run your app as appropriate!
+	1. Install the [taco-cli](http://go.microsoft.com/fwlink/?LinkID=691672) and use it to help you install any pre-requisites
+	2. Simply open the folder containing your project in VS code or your text editor and start editing!  Use the taco-cli to build and run your app as appropriate!
+	3. Be aware that your first build in particular will take quite a while given the project contains around 43mb of plugin code that needs to be compiled.
 
 5. When building or targeting iOS, take note of suggested workarounds for [common challenges when building for iOS with Xcode 7 and with Cordova 5.3.3 and below](http://go.microsoft.com/fwlink/?LinkID=691679).  **Some of these are pre-applied by the script.**
 
@@ -52,7 +60,9 @@ If you would prefer to use SAP plugins without the Custom Fiori Client script, y
 
 ## Known Issues
 - Custom Fiori Clients make use of quite a few custom Cordova plugins, so you will want to be sure to pick an Android or iOS device or emulator / simulator target when debugging your app. Ripple will not be able to simulate the app.
-- Cordova 5.3.3 and below have known incompatibilities with Xcode 7. Some workarounds are applied in this sample, but [see known issues for more details](http://go.microsoft.com/fwlink/?LinkID=691679).
+- SAP recommends Cordova 5.2.0 for use with the Kapsel SDK in Mobile SDK 3.0 SP10 and as a result this sample uses 5.2.0 as well. However, there are some known issues with 5.2.0 to be aware of:  
+	- Cordova 5.2.0 only works with Node.js 0.12.x and below. There are known issues with both Node.js 4.x.x for iOS and with Node.js 5.0.0+ for all platforms.  See [known issues for more details](http://go.microsoft.com/fwlink/?LinkID=618471).
+	- Cordova 5.3.3 and below have known incompatibilities with Xcode 7 that can be resolved with some workarounds. Some workarounds are applied in this sample, but [see known issues for more details](http://go.microsoft.com/fwlink/?LinkID=691679).
 - Windows and Windows Phone 8.0 are not supported by the Custom Fiori Client creation script today
 
 ## Terms of Use
