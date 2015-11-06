@@ -28,7 +28,7 @@ You can build and edit these apps in Visual Studio [Tools for Apache Cordova](ht
 
 2. Next, **[follow the instructions on SAP's site](http://go.microsoft.com/fwlink/?LinkID=691661)** or (simply follow the instructions in README.md in the fiori_client folder) to configure the client generation script in this folder but type **node taco_create.js** instead of create_fiori_client.js. Summary:
 
-	1. Install Node.js 0.12.x and version 5.2.0 of the Cordova CLI. (npm install -g cordova@5.2.0)
+	1. Install **[Node.js 0.12.x](https://nodejs.org/download/release/v0.12.7/)** and version **5.2.0** of the Cordova CLI. (npm install -g cordova@5.2.0)
 
 	2. Update config.json in the KapselSDK\apps\fiori_client folder with your package name / ID, target folder for the project, app name, and platforms. Only Android and iOS are currently supported with Windows coming soon. Note that targetFolder must be a **relative path** not absolute.
 	
@@ -57,10 +57,24 @@ If you would prefer to use SAP plugins without the Custom Fiori Client script, y
 3. Update the path in this file to point to your SAP KapselSDK plugins folder (Ex: "C:\\SAP\\KapselSDK\\plugins").
 4. You may now add plugins from the "plugins" folder of the Kapsel SDK using the "Custom" tab in the config.xml designer.  API documentation can be found [on SAP's website](http://go.microsoft.com/fwlink/?LinkID=691664).
 
+## FAQ
+
+**Q: The build failed with "cmd: Command failed with exit code 2" in VS. What is wrong?** <br />
+A: Look through the contents of the Output window. You are likely encountering one of the issues below.
+
+**Q: The build failed and the Output window or terminal output mentions "> Could not resolve all dependencies for configuration ':_armv7DebugCompile'" or a similar error. What is wrong?"** <br />
+A: This generally means you do not have Android Support Repository, Android Support Library, Google Play services, or Google Repository under extras installed via the Android SDK Manager. Be sure they're installed as described above.
+
+**Q: The build failed and the Output window or terminal output mentions "Could not start java virtual machine" or an "Out of memory" error. How do I fix this?** <br />
+A: Set a _JAVA_OPTIONS environment variable to -Xmx1024M and restart VS or your Terminal / Command Line Tool.
+
+**Q: The build fails with a "Your JAVA_HOME is invalid error" in the Output window after updating Tools > Options > Tools for Apache Cordova > Environment Variable Overrides in VS. How do I fix this?** <br />
+A: Try and click "Reset to Default" button in Environment Variable Overrides. This is a known issue with Tools for Apache Cordova Update 4 that will be resolved in a future update.
+
 ## Known Issues
-- Custom Fiori Clients make use of quite a few custom Cordova plugins, so you will want to be sure to pick an Android or iOS device or emulator / simulator target when debugging your app. Ripple will not be able to simulate the app.
+- Ripple cannot be used to simulate a Custom Fiori Client. Custom Fiori Clients make use of quite a few custom Cordova plugins, so you will want to be sure to pick an Android or iOS device or emulator / simulator target when debugging your app.
 - SAP recommends Cordova 5.2.0 for use with the Kapsel SDK in Mobile SDK 3.0 SP10 and as a result this sample uses 5.2.0 as well. However, there are some known issues with 5.2.0 to be aware of:  
-	- Cordova 5.2.0 only works with Node.js 0.12.x and below. There are known issues with both Node.js 4.x.x for iOS and with Node.js 5.0.0+ for all platforms.  See [known issues for more details](http://go.microsoft.com/fwlink/?LinkID=618471).
+	- Cordova 5.2.0 only works with [Node.js 0.12.7](https://nodejs.org/download/release/v0.12.7/) and below. There are known issues with both Node.js 4.x.x for iOS and with Node.js 5.0.0+ for all platforms.  See [known issues for more details](http://go.microsoft.com/fwlink/?LinkID=618471).
 	- Cordova 5.3.3 and below have known incompatibilities with Xcode 7 that can be resolved with some workarounds. Some workarounds are applied in this sample, but [see known issues for more details](http://go.microsoft.com/fwlink/?LinkID=691679).
 - Windows and Windows Phone 8.0 are not supported by the Custom Fiori Client creation script today
 
