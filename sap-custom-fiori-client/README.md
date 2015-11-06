@@ -15,8 +15,10 @@ You can build and edit these apps in Visual Studio [Tools for Apache Cordova](ht
 
 	1. Be sure to install the **Android Support Repository**, **Android Support Library**, **Google Play services**, and **Google Repository** under extras via the Android SDK Manager (Typically you'll need to run "C:\Program Files (x86)\Android\android-sdk\SDK Manager.exe" as Administrator to make changes.)
 
-	2. Bump up your Java heap to 1024M - the 512M default is not enough. To do so, set an environment variable of **_JAVA_OPTIONS=-Xmx1024M**. You may need to restart for these settings to take effect.
-	
+	2. Install a version of the Windows **[64-bit JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html)** and set your JAVA_HOME environment variable to its location. When using Visual Studio, verify **Tools &gt; Options &gt; Tools for Apache Cordova &gt; Environment Variable Overrides** shows this JAVA_HOME location and override it if not.		
+ 		 
+	3. Bump up your Java heap to 1500M - the 512M default is not enough. To do so, set an environment variable of **_JAVA_OPTIONS=-Xmx1500M**. You may need to restart for these settings to take effect.
+
 2. Next, download the **SAP Mobile SDK 3.0 SP 10** (or a [free trial from the SAP Store](http://go.microsoft.com/fwlink/?LinkID=691663)) and install it on your machine.
 
 3. At this point you may [build a Custom Fiori Mobile Client in VS or VS Code](#custom) or simply [add SAP plugins to your Cordova project](#plugins).
@@ -66,7 +68,7 @@ A: Look through the contents of the Output window. You are likely encountering o
 A: This generally means you do not have Android Support Repository, Android Support Library, Google Play services, or Google Repository under extras installed via the Android SDK Manager. Be sure they're installed as described above.
 
 **Q: The build failed and the Output window or terminal output mentions "Could not start java virtual machine" or an "Out of memory" error. How do I fix this?** <br />
-A: Set a _JAVA_OPTIONS environment variable to -Xmx1024M and restart VS or your Terminal / Command Line Tool.
+A: You'll need to use a 64-bit JVM and set the heap to 1500M. See "Before You Begin" for details.
 
 **Q: The build fails with a "Your JAVA_HOME is invalid error" in the Output window after updating Tools > Options > Tools for Apache Cordova > Environment Variable Overrides in VS. How do I fix this?** <br />
 A: Try and click "Reset to Default" button in Environment Variable Overrides. This is a known issue with Tools for Apache Cordova Update 4 that will be resolved in a future update.
