@@ -70,7 +70,7 @@ A: This generally means you do not have Android Support Repository, Android Supp
 **Q: The build failed and the Output window or terminal output mentions "Could not start java virtual machine" or an "Out of memory" error. How do I fix this?** <br />
 A: You'll need to use a 64-bit JVM and set the heap to 1500M. See "Before You Begin" for details.
 
-**Q: The build fails with a "Your JAVA_HOME is invalid error" in the Output window after updating Tools > Options > Tools for Apache Cordova > Environment Variable Overrides in VS. How do I fix this?** <br />
+**Q: The build fails with a "Your JAVA_HOME is invalid error" in the Output window but the path looks valid. How do I fix this?** <br />
 A: Update to a fresh copy of the [64-bit JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) and follow the instructions in "Before You Begin" above. Corrupted installs of a JDK can cause this error.
 
 ## Known Issues
