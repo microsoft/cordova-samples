@@ -35,5 +35,4 @@
   <vs:plugin name="kapsel-plugin-voicerecording"/>
   <vs:plugin name="kapsel-plugin-xhook"/>
   <vs:plugin name="nl.x-services.plugins.calendar"/>
-  <vs:plugin name="nl.x-services.plugins.launchmyapp"/>
   <hook type="before_prepare" src="hooks/hook-res-native.js" />
