@@ -70,7 +70,7 @@ A: Look through the contents of the Output window. You are likely encountering o
 A: This generally means you do not have Android Support Repository, Android Support Library, Google Play services, or Google Repository under extras installed via the Android SDK Manager. Be sure they're installed as described above.
 
 **Q: The build failed and the Output window or terminal output mentions "Could not start java virtual machine" or an "Out of memory" error. How do I fix this?** <br />
-A: You'll need to use a 64-bit JVM and set the heap to 1500M. See "Before You Begin" for details.
+A: You'll need to use a 64-bit JDK and set the heap to 1500M. See "Before You Begin" for details.
 
 **Q: The build fails with a "Your JAVA_HOME is invalid error" in the Output window or terminal output but the JAVA_HOME path looks valid. How do I fix this?** <br />
 A: Update to a fresh copy of the [64-bit JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) and follow the instructions in "Before You Begin" above. Corrupted installs and path conflicts for the JDK can cause this error and a fresh install of 64-bit JDK 8 typically resolves the issue.
