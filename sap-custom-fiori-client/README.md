@@ -75,6 +75,9 @@ A: You'll need to use a 64-bit JVM and set the heap to 1500M. See "Before You Be
 **Q: The build fails with a "Your JAVA_HOME is invalid error" in the Output window or terminal output but the JAVA_HOME path looks valid. How do I fix this?** <br />
 A: Update to a fresh copy of the [64-bit JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) and follow the instructions in "Before You Begin" above. Corrupted installs and path conflicts for the JDK can cause this error and a fresh install of 64-bit JDK 8 typically resolves the issue.
 
+**Q: I am running into errors about certain plugins not being found or installing incorrectly. How do I fix this?** <br />
+Be sure you've installed hotfix 5 of mobile SDK SP 10 (SP10_5) as some plugin names have changed that can cause conflicts with earlier versions. 
+
 ## Known Issues
 - Ripple cannot be used to simulate a Custom Fiori Client. Custom Fiori Clients make use of quite a few custom Cordova plugins, so you will want to be sure to pick an Android or iOS device or emulator / simulator target when debugging your app.
 - SAP recommends Cordova 5.2.0 for use with the Kapsel SDK in Mobile SDK 3.0 SP10 and as a result this sample uses 5.2.0 as well. However, there are some known issues with 5.2.0 to be aware of:  
