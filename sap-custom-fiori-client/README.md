@@ -76,7 +76,7 @@ A: You'll need to use a 64-bit JVM and set the heap to 1500M. See "Before You Be
 A: Update to a fresh copy of the [64-bit JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) and follow the instructions in "Before You Begin" above. Corrupted installs and path conflicts for the JDK can cause this error and a fresh install of 64-bit JDK 8 typically resolves the issue.
 
 **Q: I am running into errors about certain plugins not being found or installing incorrectly. How do I fix this?** <br />
-Be sure you've installed hotfix 5 of mobile SDK SP 10 (SP10_5) as some plugin names have changed that can cause conflicts with earlier versions. 
+Be sure you've installed hotfix 5 of mobile SDK SP 10 (SP10_5) as some plugin names have changed that can cause conflicts with earlier versions. Moving to hotfix 5 is the best way to ensure the sample works, but removing the conflicting &lt;vs:plugin&gt; elements in config.xml may also resolve the issue (Right Click > View Code in VS).
 
 ## Known Issues
 - Ripple cannot be used to simulate a Custom Fiori Client. Custom Fiori Clients make use of quite a few custom Cordova plugins, so you will want to be sure to pick an Android or iOS device or emulator / simulator target when debugging your app.
