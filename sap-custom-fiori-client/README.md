@@ -17,7 +17,9 @@ You can build and edit these apps in Visual Studio [Tools for Apache Cordova](ht
 
 	2. Install a version of the Windows **[64-bit JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html)** and set your JAVA_HOME environment variable to its location. When using Visual Studio, you should update **Tools &gt; Options &gt; Tools for Apache Cordova &gt; Environment Variable Overrides** to this same location.
 	 
-	3. Bump up your Java heap to 1500M - the 512M default is not enough. To do so, set an environment variable of **_JAVA_OPTIONS=-Xmx1500M**. You may need to restart for these settings to take effect.
+	3. Bump up your Java heap to 1500M - the 512M default is not enough. To do so, set an environment variable of **_JAVA_OPTIONS=-Xmx1500M**. 
+	
+	4. Restart your computer.
 
 2. Next, download the **SAP Mobile SDK 3.0 SP 10 along with hotfix 5 (SP10_5)** (or a [free trial from the SAP Store](http://go.microsoft.com/fwlink/?LinkID=691663)) and install it on your machine.
 
