@@ -43,16 +43,41 @@ var onSuccess = function (position) {
 
     // Get zipCode by using latitude and longitude.
 
-    var queryString = "https://query.yahooapis.com/v1/public/yql?q=" +
-       "select%20*%20from%20geo.placefinder%20where%20text%3D%22" + latitude +
-       "%2C" + longitude + "%22%20and%20gflags%3D%22R%22" + "&format=json";
 
-    $.getJSON(queryString, function (results) {
+    // Step 1: Use latitude and longitude to get Yahoo API woeid
+    var woeidQueryString = "https://query.yahooapis.com/v1/public/yql?q=" +
+        "select%20*%20from%20ugeo.reversegeocode%20where%20latitude%3D" + latitude +
+        "%20and%20longitude%3D" + longitude + "%20and%20appname%3D%22WeatherApp%22&format=json";
+
+    var woeid;
+    $.ajax({
+        url: woeidQueryString,
+        async: false,
+        dataType: 'json',
+        success: function (results) {
+
+            if (results.query.count > 0) {
+
+                // Find woeid of geo coordinates.
+                woeid = results.query.results.result.locations.woe.id;
+
+            }
+
+        }
+    });
+
+
+    //Step 2: Use woeid to find zipcode
+    var zipCodeQueryString = "https://query.yahooapis.com/v1/public/yql?q=" +
+        "select%20*%20from%20geo.places%20where%20woeid%3D" + woeid + "&format=json";
+
+    $.getJSON(zipCodeQueryString, function (results) {
 
         if (results.query.count > 0) {
 
+            // Find zipcode using woeid.
+            var zipCode = results.query.results.place.postal.content;
             // Put the zip code into the input box for the user.
-            var zipCode = results.query.results.Result.uzip
             $('#input-box').val(zipCode);
 
             $('#description').text("Get the Weather");
