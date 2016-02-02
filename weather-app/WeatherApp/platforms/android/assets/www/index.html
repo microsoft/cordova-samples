@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <!--
+        Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
+        For details, see http://go.microsoft.com/fwlink/?LinkID=617521
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com https://query.yahooapis.com http://gws2.maps.yahoo.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+
+    <title>WeatherApp</title>
+
+    <!-- WeatherApp references -->
+    <link href="css/index.css" rel="stylesheet" />
+
+    <style type="text/css">
+        body {
+            font: 1em Sans-Serif;
+        }
+
+        .flex {
+            display: -webkit-box;
+            display: flex;
+        }
+
+            .flex > div:nth-child(2) {
+                -webkit-flex-grow: 1;
+                flex-grow: 1;
+                text-align: right;
+            }
+    </style>
+</head>
+<body>
+    <h1 id="app-title">Weather App</h1>
+    <div>
+        <label for="zip-code">Zip Code:</label>
+        <input type="text" id="input-box" />
+        <button id="get-weather">Get Weather</button>
+    </div>
+    <h3 id="description">Get the Weather</h3>
+    <div class="flex">
+        <div>Temp</div>
+        <div id="temp"></div>
+    </div>
+    <div class="flex">
+        <div>Wind:</div>
+        <div id="wind"></div>
+    </div>
+    <div class="flex">
+        <div>Humidity:</div>
+        <div id="humidity"></div>
+    </div>
+    <div class="flex">
+        <div>Visibility:</div>
+        <div id="visibility"></div>
+    </div>
+    <div class="flex">
+        <div>Sunrise:</div>
+        <div id="sunrise"></div>
+    </div>
+    <div class="flex">
+        <div>Sunset:</div>
+        <div id="sunset"></div>
+    </div>
+    <!-- Cordova reference, this is added to your app when it's built. -->
+    <script src="scripts/jquery-2.2.0.min.js"></script>
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+
+    <script src="scripts/index.js"></script>
+    <script src="scripts/weather.js"></script>
+</body>
+</html>
