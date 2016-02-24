@@ -80,6 +80,7 @@
 
     var onGetLocationError = function (error) {
         $('#error-msg').text('Error getting location. Leaving zip code field blank');
+        $('#get-weather-btn').prop('disabled', false);
     }
 
 })($, WeatherApp, navigator);
