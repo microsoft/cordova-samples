@@ -1,62 +1,86 @@
-﻿function getWeather() {
-    var zipcode = $('#input-box').val();
-    var queryString =
-        "https://query.yahooapis.com/v1/public/yql?q="
-        + "select+*+from+weather.forecast+where+location="
-        + zipcode + "&format=json";
+﻿var WeatherApp = {};
 
-    $.getJSON(queryString, function (results) {
-        if (results.query.count > 0) {
-            var weather = results.query.results.channel;
+(function ($, ns, navigator) {
+    ns.getWeather = function () {
+        var zipcode = $('#zip-code-input').val();
 
-            $('#description').text(weather.description);
+        // get weather using zip code
+        var queryString =
+            'https://query.yahooapis.com/v1/public/yql?q='
+            + 'select+*+from+weather.forecast+where+location='
+            + zipcode + '&format=json';
 
-            var wind = weather.wind;
-            $('#temp').text(wind.chill);
-            $('#wind').text(wind.speed);
+        $.getJSON(queryString, function (results) {
+            if (results.query.count > 0 && results.query.results.channel.wind) {
+                $('#error-msg').hide();
+                $('#weather-data').show();
 
-            var atmosphere = weather.atmosphere;
-            $('#humidity').text(atmosphere.humidity);
-            $('#visibility').text(atmosphere.visibility);
+                var weather = results.query.results.channel;
+                $('#title').text(weather.title);
 
-            var astronomy = weather.astronomy;
-            $('#sunrise').text(astronomy.sunrise);
-            $('#sunset').text(astronomy.sunset);
-        }
-    });
-}
+                var wind = weather.wind;
+                $('#temperature').text(wind.chill);
+                $('#wind').text(wind.speed);
 
-function getLocation() {
-    navigator.geolocation.getCurrentPosition(onSuccess, onError, { enableHighAccuracy: true });
+                var atmosphere = weather.atmosphere;
+                $('#humidity').text(atmosphere.humidity);
+                $('#visibility').text(atmosphere.visibility);
 
-    $('#description').text("Determining your current location ...");
-    $('#get-weather').prop("disabled", true);
-}
+                var astronomy = weather.astronomy;
+                $('#sunrise').text(astronomy.sunrise);
+                $('#sunset').text(astronomy.sunset);
 
-var onSuccess = function (position) {
-    var latitude = position.coords.latitude;
-    var longitude = position.coords.longitude;
+                $('#summary img').attr('src', $(weather.item.description)[0].src);
 
-    // Get zipCode by using latitude and longitude.
-    var queryString = "http://gws2.maps.yahoo.com/findlocation?pf=1&locale=en_US&offset=15&flags=&q="
-        + latitude + "%2c" + longitude + "&gflags=R&start=0&format=json";
+            } else {
+                $('#weather-data').hide();
+                $('#error-msg').show();
+                $('#error-msg').text("Error retrieving data. " + results.query.results.channel.item.title);
+            }
+        }).fail(function (jqXHR) {
+            $('#error-msg').show();
+            $('#error-msg').text("Error retrieving data. " + jqXHR.statusText);
+        });
 
-    $.getJSON(queryString, function (results) {
-        if (results.Found > 0) {
-            // Put the zip code into the input box for the user if we get a location
-            var zipCode = results.Result.uzip
-            $('#input-box').val(zipCode);
-        }
-    }).fail(function () {        
-        console.log("error getting location, leaving zip code field blank");
-    }).always(function () {
-        // Always reset the UI even if we fail to get a ZIP code from the service.
-        $('#description').text("Get the Weather");
-        $('#get-weather').prop("disabled", false);
-    });
-}
+        return false;
+    }
 
-function onError(error) {
-    console.log('code: ' + error.code + '\n' +
-        'message: ' + error.message + '\n');
-}
+    ns.getLocation = function () {
+        navigator.geolocation.getCurrentPosition(onGetLocationSuccess, onGetLocationError, { enableHighAccuracy: true });
+
+        $('#error-msg').show();
+        $('#error-msg').text('Determining your current location ...');
+
+        $('#get-weather-btn').prop('disabled', true);
+    }
+
+    var onGetLocationSuccess = function (position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+
+        // get zip code by using latitude and longitude.
+        var queryString = 'http://gws2.maps.yahoo.com/findlocation?pf=1&locale=en_US&offset=15&flags=&q='
+            + latitude + '%2c' + longitude + '&gflags=R&start=0&format=json';
+
+        $.getJSON(queryString, function (results) {
+            $('#error-msg').hide();
+
+            if (results.Found > 0) {
+                // put the zip code into the input box for the user if we get a location
+                var zipCode = results.Result.uzip
+                $('#zip-code-input').val(zipCode);
+            }
+        }).fail(function () {
+            $('#error-msg').text('Error retrieving data.');
+        }).always(function () {
+            // always reset the UI even if we fail to get a ZIP code from the service.
+            $('#get-weather-btn').prop('disabled', false);
+        });
+    }
+
+    var onGetLocationError = function (error) {
+        $('#error-msg').text('Error getting location. Leaving zip code field blank');
+        $('#get-weather-btn').prop('disabled', false);
+    }
+
+})($, WeatherApp, navigator);
