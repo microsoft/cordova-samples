@@ -1,0 +1,1 @@
+{"version":3,"file":"Person.js","sourceRoot":"","sources":["../../scripts/Person.ts"],"names":[],"mappings":"","sourcesContent":["interface Person {\r\n    firstname: string;\r\n    lastname: string;\r\n    latitude: string;\r\n}\r\n\r\nexport = Person;"]}
