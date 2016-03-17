@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "amd",
+    "noImplicitAny": false,
+    "removeComments": false,
+    "sourceMap": true,
+    "inlineSources": true,
+    "noEmitOnError": true,
+    "outDir": "./www/scripts"
+  }
+}
