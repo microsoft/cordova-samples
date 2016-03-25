@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <!--
+        Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
+        For details, see http://go.microsoft.com/fwlink/?LinkID=617521
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: * 'unsafe-eval'; style-src 'self' 'unsafe-inline' *; media-src *">
+
+    <title>Cordova Geolocation Sample</title>
+
+    <!-- WeatherApp references -->
+    <link href="css/index.css" rel="stylesheet" />
+
+    <style type="text/css">
+
+    </style>
+    <style type="text/css">
+
+    </style>
+
+</head>
+<body>
+    <div id="banner">
+        <div id="banner-content">
+           Do things with Geolocation
+        </div>
+    </div>
+    <div id="main-content">
+        <div>
+            <select id="geo-select">
+                <option value="default">Choose an option</option>
+                <option value="weather">Get the weather at my location</option>
+                <option value="map">Show me where I am on a map</option>
+                <option value="places">What stores near me</option>
+                <option value="pictures">Pictures of things around me</option>
+            </select>
+            <br />
+            <div id="check-div">
+                <label><input type="checkbox" id="geo_check" value="checkbox">Update page as I move</label>
+            </div>
+        </div>
+
+        <div id="weather">
+            <h3 id="description"></h3>
+            <div class="flex">
+                <div>Temp</div>
+                <div id="temp"></div>
+            </div>
+            <div class="flex">
+                <div>Wind:</div>
+                <div id="wind"></div>
+            </div>
+            <div class="flex">
+                <div>Humidity:</div>
+                <div id="humidity"></div>
+            </div>
+            <div class="flex">
+                <div>Visibility:</div>
+                <div id="visibility"></div>
+            </div>
+            <div class="flex">
+                <div>Sunrise:</div>
+                <div id="sunrise"></div>
+            </div>
+            <div class="flex">
+                <div>Sunset:</div>
+                <div id="sunset"></div>
+            </div>
+        </div>
+
+        <div id="map"></div>
+
+        <div id="places"></div>
+
+        <div id="pictures" style="height:800px; overflow:scroll"></div>
+    
+    </div>
+
+    <footer id="footer">
+        <div id="footer-content">
+            
+        </div>
+    </footer> 
+
+
+    <!-- Cordova reference, this is added to your app when it's built. -->
+
+    <script src="scripts/libraries/jquery-2.2.1.min.js"></script>
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+    <script src="scripts/index.js"></script>
+    <script src="scripts/customlibraries/weather.js"></script>
+    <script src="scripts/customlibraries/places.js"></script>
+    <script src="scripts/customlibraries/pictures.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=Your_Key_Here"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=Your_Key_Here&libraries=places"></script>
+    <script src="scripts/customlibraries/map.js"></script>
+</body>
+</html>
