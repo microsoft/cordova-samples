@@ -12,24 +12,27 @@
         document.addEventListener( 'pause', onPause.bind( this), false);
         document.addEventListener('resume', onResume.bind(this), false);
 
-        getHelpUrls();
-
         $('#help-select').on('change', function (e) {
+
+            var url;
 
             switch (this.value) {
 
                 case "article":
-                    showArticle();
+                    url = "https://cordova.apache.org/docs/en/latest/"
+                                + "reference/cordova-plugin-inappbrowser/index.html";
                     break;
 
                 case "video":
-                    showVideo();
+                    url = "https://youtu.be/F-GlVrTaeH0";
                     break;
 
                 case "search":
-                    showSearch();
+                    url = "https://www.google.com/#q=inAppBrowser+plugin";
                     break;
             }
+
+            showHelp(url);
 
         });
         
