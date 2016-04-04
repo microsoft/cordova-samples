@@ -69,22 +69,18 @@
     }
 
     function onDownloadImage() {
-        window.requestFileSystem(window.TEMPORARY, 5 * 1024 * 1024 /*5MB*/, function (fs) {
+        window.requestFileSystem(window.TEMPORARY, 5 * 1024 * 1024, function (fs) {
 
             console.log('file system open: ' + fs.name);
-            // Return a DirectoryEntry using Cordova file URLs.
-            window.resolveLocalFileSystemURL(cordova.file.cacheDirectory, function (dirEntry) {
 
-                // Make sure you add the domain name to the Content-Security-Policy <meta> element.
-                var url = 'http://cordova.apache.org/static/img/cordova_bot.png';
-                var fileName = 'downloaded-image.png';
+            // Make sure you add the domain name to the Content-Security-Policy <meta> element.
+            var url = 'http://cordova.apache.org/static/img/cordova_bot.png';
+            // fs.root is a DirectoryEntry object pointing to the cache in the app's
+            // sandboxed file system.
+            fs.root.getFile('downloaded-image.png', { create: true, exclusive: false }, function (fileEntry) {
+                download(fileEntry, url, true);
 
-                dirEntry.getFile(fileName, { create: true, exclusive: false }, function (fileEntry) {
-                    download(fileEntry, url, true);
-
-                }, onErrorCreateFile);
-
-            }, onErrorResolveUrl);
+            }, onErrorCreateFile);
 
         }, onErrorLoadFs);
     }

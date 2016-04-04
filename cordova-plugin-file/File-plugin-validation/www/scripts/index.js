@@ -41,7 +41,16 @@
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
 
             console.log('file system open: ' + fs.name);
-            createPersistentFile("newPersistentFile.txt");
+            // fs.root is a DirectoryEntry object pointing to the persistent storage location
+            // in the app's sandboxed file system.
+            fs.root.getFile("newPersistentFile.txt", { create: true, exclusive: false }, function (fileEntry) {
+
+                console.log("fileEntry is file?" + fileEntry.isFile.toString());
+                // fileEntry.name == 'someFile.txt'
+                // fileEntry.fullPath == '/someFile.txt'
+                writeFile(fileEntry, null);
+
+            }, onErrorCreateFile);
 
         }, onErrorLoadFs);
     }
@@ -56,21 +65,18 @@
     }
 
     function onFetchFile() {
-        window.requestFileSystem(window.TEMPORARY, 5 * 1024 * 1024 /*5MB*/, function (fs) {
+        window.requestFileSystem(window.TEMPORARY, 5 * 1024 * 1024, function (fs) {
 
             console.log('file system open: ' + fs.name);
-            // Return a DirectoryEntry using Cordova file URLs.
-            window.resolveLocalFileSystemURL(cordova.file.cacheDirectory, function (dirEntry) {
-
-                getSampleFile(dirEntry);
-
-            }, onErrorResolveUrl);
+            // fs.root is a DirectoryEntry object pointing to the application cache
+            // in the app's sandboxed file system.
+            getSampleFile(fs.root);
 
         }, onErrorLoadFs);
     }
 
     function onCreateDir() {
-        window.requestFileSystem(window.TEMPORARY, 5 * 1024 * 1024 /*5MB*/, function (fs) {
+        window.requestFileSystem(window.TEMPORARY, 5 * 1024 * 1024, function (fs) {
 
             console.log('file system open: ' + fs.name);
             createDirectory(fs.root);
@@ -85,25 +91,6 @@
             createPersistentFile("fileToAppend.txt", true);
 
         }, onErrorLoadFs);
-    }
-
-    function createPersistentFile(fileName, isAppend) {
-
-        // Return a DirectoryEntry using Cordova file URLs.
-        window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (dirEntry) {
-
-            // Create a new file or return the file if it already exists.
-            dirEntry.getFile(fileName, { create: true, exclusive: false }, function (fileEntry) {
-
-                console.log("fileEntry is file?" + fileEntry.isFile.toString());
-                // fileEntry.name == 'someFile.txt'
-                // fileEntry.fullPath == '/someFile.txt'
-                writeFile(fileEntry, null, isAppend);
-
-            }, onErrorCreateFile);
-
-        }, onErrorResolveUrl );
-
     }
 
     function createFile(dirEntry, fileName) {
