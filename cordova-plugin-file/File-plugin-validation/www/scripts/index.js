@@ -85,25 +85,26 @@
     }
 
     function onAppendData() {
-        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
 
-            console.log('file system open: ' + fs.name);
-            createPersistentFile("fileToAppend.txt", true);
-
+        window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (dirEntry) {
+            console.log('file system open: ' + dirEntry.name);
+            var isAppend = true;
+            createFile(dirEntry, "fileToAppend.txt", isAppend);
         }, onErrorLoadFs);
     }
 
-    function createFile(dirEntry, fileName) {
+    function createFile(dirEntry, fileName, isAppend) {
         // Creates a new file or returns the file if it already exists.
         dirEntry.getFile(fileName, {create: true, exclusive: false}, function(fileEntry) {
 
-            writeFile(fileEntry);
+            writeFile(fileEntry, null, isAppend);
 
         }, onErrorCreateFile);
 
     }
 
     function createDirectory(rootDirEntry) {
+
         rootDirEntry.getDirectory('NewDirInRoot', { create: true }, function (dirEntry) {
             dirEntry.getDirectory('images', { create: true }, function (subDirEntry) {
 
@@ -114,16 +115,22 @@
     }
 
     function writeFile(fileEntry, dataObj, isAppend) {
+
         // Create a FileWriter object for our FileEntry (log.txt).
         fileEntry.createWriter(function (fileWriter) {
 
-            fileWriter.onwriteend = function (e) {
-                console.log("Successful file read...");
-                readFile(fileEntry);
+            fileWriter.onwriteend = function() {
+                console.log("Successful file write...");
+                if (dataObj.type == "image/png") {
+                    readBinaryFile(fileEntry);
+                }
+                else {
+                    readFile(fileEntry);
+                }
             };
 
-            fileWriter.onerror = function (e) {
-                console.log("Failed file read: " + e.toString());
+            fileWriter.onerror = function() {
+                console.log("Failed file write: " + e.toString());
             };
 
             // If data object is not passed in,
@@ -140,6 +147,7 @@
     }
 
     function setFileWritePosition(fileWriter) {
+
         try {
             fileWriter.seek(fileWriter.length);
         }
@@ -150,15 +158,13 @@
 
     // Called after file write to verify file data.
     function readFile(fileEntry) {
+
         fileEntry.file(function (file) {
             var reader = new FileReader();
 
-            reader.onloadend = function (e) {
+            reader.onloadend = function() {
                 console.log("Successful file read: " + this.result);
                 displayFileData(fileEntry.fullPath + ": " + this.result);
-                if (this.result.toString().substring(0, 4) == "blob") {
-                    displayImageData(this.result);
-                }
             };
 
             reader.readAsText(file);
@@ -166,11 +172,30 @@
         }, onErrorReadFile);
     }
 
-    function saveFile(dirEntry, srcImage, fileName) {
+    function readBinaryFile(fileEntry) {
+
+        fileEntry.file(function (file) {
+            var reader = new FileReader();
+
+            reader.onloadend = function() {
+
+                console.log("Successful file read: " + this.result);
+                displayFileData(fileEntry.fullPath + ": " + this.result);
+
+                var blob = new Blob([new Uint8Array(this.result)], { type: "image/png" });
+                displayImage(blob);
+            };
+
+            reader.readAsArrayBuffer(file);
+
+        }, onErrorReadFile);
+    }
+
+    function saveFile(dirEntry, fileData, fileName) {
 
         dirEntry.getFile(fileName, { create: true, exclusive: false }, function (fileEntry) {
 
-            writeFile(fileEntry, srcImage);
+            writeFile(fileEntry, fileData);
 
         }, onErrorCreateFile);
     }
@@ -182,15 +207,11 @@
         xhr.open('GET', 'http://cordova.apache.org/static/img/cordova_bot.png', true);
         xhr.responseType = 'blob';
 
-        xhr.onload = function (e) {
+        xhr.onload = function() {
             if (this.status == 200) {
 
                 var blob = new Blob([this.response], { type: 'image/png' });
-                var img = new Image();
-                // Note: Use window.URL.revokeObjectURL when finished with image.
-                img.src = window.URL.createObjectURL(blob);
-
-                saveFile(dirEntry, img.src, "downloadedImage.png");
+                saveFile(dirEntry, blob, "downloadedImage.png");
             }
         };
         xhr.send();
@@ -203,11 +224,14 @@
 
     }
 
-    function displayImageData(fileData) {
+    function displayImage(blob) {
 
+        var img = new Image();
+        // Note: Use window.URL.revokeObjectURL when finished with image.
+        img.src = window.URL.createObjectURL(blob);
         // Displays image if result is a valid DOM string for an image.
         var elem = document.getElementById('imageFile');
-        elem.src = fileData;
+        elem.src = img.src;
     }
 
     function onErrorGetDir(e) {
@@ -223,7 +247,7 @@
     }
 
     function onErrorReadFile(e) {
-        conslole.log("error reading file: " + e.toString());
+        console.log("error reading file: " + e.toString());
     }
 
     function onErrorCreateFile(e) {
