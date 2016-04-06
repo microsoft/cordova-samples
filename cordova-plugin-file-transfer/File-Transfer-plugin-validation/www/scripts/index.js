@@ -157,12 +157,12 @@
             fileWriter.onwriteend = function (e) {
                 // testing
                 // report("File write");
-                console.log("Successful file read...");
+                console.log("Successful file write...");
                 upload(fileEntry);
             };
 
             fileWriter.onerror = function (e) {
-                console.log("Failed file read: " + e.toString());
+                console.log("Failed file write: " + e.toString());
             };
 
             // If data object is not passed in,
@@ -201,9 +201,7 @@
                 displayFileData(fileEntry.fullPath + ": " + this.result);
 
                 var blob = new Blob([new Uint8Array(this.result)], { type: "image/png" });
-                // Note: Use window.URL.revokeObjectURL when finished with image. 
-                var objURL = window.URL.createObjectURL(blob);
-                displayImageData(objURL);
+                displayImage(blob);
             };
 
             reader.readAsArrayBuffer(file);
@@ -218,11 +216,13 @@
 
     }
 
-    function displayImageData(fileData) {
+    function displayImage(blob) {
 
+        // Note: Use window.URL.revokeObjectURL when finished with image. 
+        var objURL = window.URL.createObjectURL(blob);
         // Displays image if result is a valid DOM string for an image.
         var elem = document.getElementById('imageFile');
-        elem.src = fileData;
+        elem.src = objURL;
     }
 
     function onErrorResolveUrl(e) {
