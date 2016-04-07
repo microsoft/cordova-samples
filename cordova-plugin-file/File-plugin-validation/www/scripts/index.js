@@ -129,7 +129,7 @@
                 }
             };
 
-            fileWriter.onerror = function() {
+            fileWriter.onerror = function(e) {
                 console.log("Failed file write: " + e.toString());
             };
 
@@ -226,12 +226,10 @@
 
     function displayImage(blob) {
 
-        var img = new Image();
-        // Note: Use window.URL.revokeObjectURL when finished with image.
-        img.src = window.URL.createObjectURL(blob);
         // Displays image if result is a valid DOM string for an image.
         var elem = document.getElementById('imageFile');
-        elem.src = img.src;
+        // Note: Use window.URL.revokeObjectURL when finished with image.
+        elem.src = window.URL.createObjectURL(blob);
     }
 
     function onErrorGetDir(e) {
