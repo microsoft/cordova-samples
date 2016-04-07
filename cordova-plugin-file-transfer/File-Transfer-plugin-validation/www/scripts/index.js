@@ -154,7 +154,7 @@
         // Create a FileWriter object for our FileEntry (log.txt).
         fileEntry.createWriter(function (fileWriter) {
 
-            fileWriter.onwriteend = function (e) {
+            fileWriter.onwriteend = function () {
                 // testing
                 // report("File write");
                 console.log("Successful file write...");
@@ -179,7 +179,7 @@
         fileEntry.file(function (file) {
             var reader = new FileReader();
 
-            reader.onloadend = function (e) {
+            reader.onloadend = function () {
 
                 console.log("Successful file read: " + this.result);
                 displayFileData(fileEntry.fullPath + ": " + this.result);
@@ -195,7 +195,7 @@
         fileEntry.file(function (file) {
             var reader = new FileReader();
 
-            reader.onloadend = function (e) {
+            reader.onloadend = function () {
 
                 console.log("Successful file read: " + this.result);
                 displayFileData(fileEntry.fullPath + ": " + this.result);
