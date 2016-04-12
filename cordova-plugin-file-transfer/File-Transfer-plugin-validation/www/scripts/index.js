@@ -33,11 +33,13 @@
     };
 
     function onUploadFile() {
+
         window.requestFileSystem(window.TEMPORARY, 5 * 1024 * 1024, function (fs) {
 
             console.log('file system open: ' + fs.name);
             var fileName = "uploadSource.txt";
             var dirEntry = fs.root;
+            // Parameters passed to getFile create a new file or return the file if it already exists.
             dirEntry.getFile(fileName, { create: true, exclusive: false }, function (fileEntry) {
 
                 // Write something to the file before uploading it.
@@ -49,6 +51,7 @@
     }
 
     function onDownloadFile() {
+
         window.requestFileSystem(window.TEMPORARY, 5 * 1024 * 1024, function (fs) {
 
             console.log('file system open: ' + fs.name);
@@ -56,7 +59,7 @@
             // To validate that we have overwritten local data
             // with downloaded content, we will use an empty target file.
             var fileName = "downloadTarget.txt";
-
+            // Parameters passed to getFile create a new file or return the file if it already exists.
             dirEntry.getFile(fileName, { create: true, exclusive: false }, function (fileEntry) {
                 // SERVER must be a URL that can handle the request, like
                 // http://some.server.com/download.php 
@@ -69,6 +72,7 @@
     }
 
     function onDownloadImage() {
+
         window.requestFileSystem(window.TEMPORARY, 5 * 1024 * 1024, function (fs) {
 
             console.log('file system open: ' + fs.name);
@@ -90,6 +94,7 @@
         var fileURL = fileEntry.toURL();
 
         var success = function (r) {
+            console.log("Successful upload...");
             console.log("Code = " + r.responseCode);
             console.log("Response = " + r.response);
             console.log("Sent = " + r.bytesSent);
@@ -119,7 +124,7 @@
         ft.upload(fileURL, encodeURI(SERVER), success, fail, options);
     };
 
-    function download(fileEntry, uri, isBinaryData) {
+    function download(fileEntry, uri, readBinaryData, skipRead) {
 
         var fileTransfer = new FileTransfer();
         var fileURL = fileEntry.toURL();
@@ -128,12 +133,20 @@
             uri,
             fileURL,
             function (entry) {
+                console.log("Successful download...");
                 console.log("download complete: " + entry.toURL());
-                if (isBinaryData) {
-                    readBinaryFile(entry);
+                if (skipRead) {
+                    // You can just display the image if you 
+                    // don't need to read it.
+                    displayImageByFileURL(entry);
                 }
                 else {
-                    readFile(entry);
+                    if (readBinaryData) {
+                        readBinaryFile(entry);
+                    }
+                    else {
+                        readFile(entry);
+                    }
                 }
             },
             function (error) {
@@ -155,13 +168,13 @@
         fileEntry.createWriter(function (fileWriter) {
 
             fileWriter.onwriteend = function () {
-                // testing
-                // report("File write");
+
                 console.log("Successful file write...");
                 upload(fileEntry);
             };
 
             fileWriter.onerror = function (e) {
+
                 console.log("Failed file write: " + e.toString());
             };
 
@@ -192,6 +205,7 @@
     }
 
     function readBinaryFile(fileEntry) {
+
         fileEntry.file(function (file) {
             var reader = new FileReader();
 
@@ -223,6 +237,13 @@
         // Displays image if result is a valid DOM string for an image.
         var elem = document.getElementById('imageFile');
         elem.src = objURL;
+    }
+
+    // You can just display the image if you don't
+    // need to read it.
+    function displayImageByFileURL(fileEntry) {
+        var elem = document.getElementById('imageFile');
+        elem.src = fileEntry.toURL();
     }
 
     function onErrorResolveUrl(e) {
