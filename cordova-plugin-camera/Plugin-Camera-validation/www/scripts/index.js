@@ -154,8 +154,8 @@
             displayFileData(fileEntry.nativeURL, "Native URL");
 
         }, function () {
-            // If you can't easily get the FileEntry (for example, no write access
-            // to Pictures library) copy to a new FileEntry.
+            // If don't get the FileEntry (which may happen when testing
+            // on some emulators), copy to a new FileEntry.
             copyToFile(imgUri);
         });
     }
