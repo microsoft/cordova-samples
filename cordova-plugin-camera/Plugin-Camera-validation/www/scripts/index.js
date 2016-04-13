@@ -60,9 +60,10 @@
 
         var srcType = Camera.PictureSourceType.CAMERA;
         var options = setOptions(srcType);
-        var func = copyToFile;
+        var func = createNewFileEntry;
 
         if (selection == "camera-thmb") {
+            // Set box size for resize (maintains aspect ratio)
             options.targetHeight = 100;
             options.targetWidth = 100;
         }
@@ -87,11 +88,10 @@
 
         var srcType = Camera.PictureSourceType.SAVEDPHOTOALBUM;
         var options = setOptions(srcType);
-        var func = copyToFile;
+        var func = createNewFileEntry;
 
         if (selection == "picker-thmb") {
-            // To downscale a selected image,
-            // Camera.EncodingType (e.g., JPEG) must match selected image type.
+            // Set box size for resize (maintains aspect ratio)
             options.targetHeight = 100;
             options.targetWidth = 100;
         }
@@ -128,7 +128,23 @@
         return options;
     }
 
-    function copyToFile(imgUri) {
+    // Get the FileEntry for the returned image.
+    function getFileEntry(imgUri) {
+        window.resolveLocalFileSystemURL(imgUri, function success(fileEntry) {
+
+            // Do something with it, like write to it, upload it, etc.
+            // writeFile(fileEntry, imgUri);
+            console.log("got file: " + fileEntry.fullPath);
+            displayFileData(fileEntry.nativeURL, "Native URL");
+
+        }, function () {
+            // If don't get the FileEntry (which may happen when testing
+            // on some emulators), copy to a new FileEntry.
+            createNewFileEntry(imgUri);
+        });
+    }
+
+    function createNewFileEntry(imgUri) {
         window.resolveLocalFileSystemURL(cordova.file.cacheDirectory, function success(dirEntry) {
 
             // JPEG file
@@ -142,22 +158,6 @@
             }, onErrorCreateFile);
 
         }, onErrorResolveUrl);
-    }
-
-    // Get the FileEntry for the returned image.
-    function getFileEntry(imgUri) {
-        window.resolveLocalFileSystemURL(imgUri, function success(fileEntry) {
-
-            // Do something with it, like write to it, upload it, etc.
-            // writeFile(fileEntry, imgUri);
-            console.log("got file: " + fileEntry.fullPath);
-            displayFileData(fileEntry.nativeURL, "Native URL");
-
-        }, function () {
-            // If don't get the FileEntry (which may happen when testing
-            // on some emulators), copy to a new FileEntry.
-            copyToFile(imgUri);
-        });
     }
 
     function noSelection() {
