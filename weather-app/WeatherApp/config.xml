@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="io.cordova.myapp70a2a3" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" defaultlocale="en-US">
+<widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="io.cordova.myappadaad6" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" defaultlocale="en-US">
   <name>WeatherApp</name>
   <description>A blank project that uses Apache Cordova to help you build an app that targets multiple mobile platforms: Android, iOS, Windows, and Windows Phone.</description>
   <author href="http://cordova.io" email="dev@cordova.apache.org">Apache Cordova Team </author>
@@ -73,8 +73,8 @@
     <icon src="res/icons/windows/Wide310x150Logo.scale-240.png" width="744" height="360" />
   </platform>
   <platform name="wp8">
-    <icon src="res/icons/wp8/ApplicationIcon.png" width="62" height="62" />
-    <icon src="res/icons/wp8/Background.png" width="173" height="173" />
+    <icon src="res/icons/wp8/ApplicationIcon.png" width="99" height="99" />
+    <icon src="res/icons/wp8/Background.png" width="159" height="159" />
   </platform>
   <platform name="android">
     <splash src="res/screens/android/screen-hdpi-landscape.png" density="land-hdpi" />
@@ -104,7 +104,7 @@
     <splash src="res/screens/windows/SplashScreenPhone.scale-240.png" width="1152" height="1920" />
   </platform>
   <platform name="wp8">
-    <splash src="res/screens/wp8/SplashScreenImage.jpg" width="480" height="800" />
+    <splash src="res/screens/wp8/SplashScreenImage.png" width="768" height="1280" />
   </platform>
   <plugin name="cordova-plugin-geolocation" version="2.1.0" />
 </widget>

@@ -1,86 +1,85 @@
-﻿var WeatherApp = {};
+﻿// Get a free key at http://openweathermap.org/. Replace the "Your_Key_Here" string with that key.
+var OpenWeatherAppKey = "Your_Key_Here";
 
-(function ($, ns, navigator) {
-    ns.getWeather = function () {
-        var zipcode = $('#zip-code-input').val();
+function getWeatherWithZipCode() {
 
-        // get weather using zip code
-        var queryString =
-            'https://query.yahooapis.com/v1/public/yql?q='
-            + 'select+*+from+weather.forecast+where+location='
-            + zipcode + '&format=json';
+    var zipcode = $('#zip-code-input').val();
 
-        $.getJSON(queryString, function (results) {
-            if (results.query.count > 0 && results.query.results.channel.wind) {
-                $('#error-msg').hide();
-                $('#weather-data').show();
+    var queryString =
+        'http://api.openweathermap.org/data/2.5/weather?zip='
+         + zipcode + ',us&appid=' + OpenWeatherAppKey + '&units=imperial';
 
-                var weather = results.query.results.channel;
-                $('#title').text(weather.title);
+    $.getJSON(queryString, function (results) {
 
-                var wind = weather.wind;
-                $('#temperature').text(wind.chill);
-                $('#wind').text(wind.speed);
+        showWeatherData(results);
 
-                var atmosphere = weather.atmosphere;
-                $('#humidity').text(atmosphere.humidity);
-                $('#visibility').text(atmosphere.visibility);
-
-                var astronomy = weather.astronomy;
-                $('#sunrise').text(astronomy.sunrise);
-                $('#sunset').text(astronomy.sunset);
-
-                $('#summary img').attr('src', $(weather.item.description)[0].src);
-
-            } else {
-                $('#weather-data').hide();
-                $('#error-msg').show();
-                $('#error-msg').text("Error retrieving data. " + results.query.results.channel.item.title);
-            }
-        }).fail(function (jqXHR) {
-            $('#error-msg').show();
-            $('#error-msg').text("Error retrieving data. " + jqXHR.statusText);
-        });
-
-        return false;
-    }
-
-    ns.getLocation = function () {
-        navigator.geolocation.getCurrentPosition(onGetLocationSuccess, onGetLocationError, { enableHighAccuracy: true });
-
+    }).fail(function (jqXHR) {
         $('#error-msg').show();
-        $('#error-msg').text('Determining your current location ...');
+        $('#error-msg').text("Error retrieving data. " + jqXHR.statusText);
+    });
 
-        $('#get-weather-btn').prop('disabled', true);
+    return false;
+}
+
+function showWeatherData(results) {
+
+    if (results.weather.length) {
+
+        $('#error-msg').hide();
+        $('#weather-data').show();
+
+        $('#title').text(results.name);
+        $('#temperature').text(results.main.temp);
+        $('#wind').text(results.wind.speed);
+        $('#humidity').text(results.main.humidity);
+        $('#visibility').text(results.weather[0].main);
+
+        var sunriseDate = new Date(results.sys.sunrise);
+        $('#sunrise').text(sunriseDate.toLocaleTimeString());
+
+        var sunsetDate = new Date(results.sys.sunrise);
+        $('#sunset').text(sunsetDate.toLocaleTimeString());
+
+    } else {
+        $('#weather-data').hide();
+        $('#error-msg').show();
+        $('#error-msg').text("Error retrieving data. ");
     }
+}
 
-    var onGetLocationSuccess = function (position) {
-        var latitude = position.coords.latitude;
-        var longitude = position.coords.longitude;
+function getWeatherWithGeoLocation() {
 
-        // get zip code by using latitude and longitude.
-        var queryString = 'http://gws2.maps.yahoo.com/findlocation?pf=1&locale=en_US&offset=15&flags=&q='
-            + latitude + '%2c' + longitude + '&gflags=R&start=0&format=json';
+    navigator.geolocation.getCurrentPosition(onGetLocationSuccess, onGetLocationError,
+      { enableHighAccuracy: true });
 
-        $.getJSON(queryString, function (results) {
-            $('#error-msg').hide();
+    $('#error-msg').show();
+    $('#error-msg').text('Determining your current location ...');
 
-            if (results.Found > 0) {
-                // put the zip code into the input box for the user if we get a location
-                var zipCode = results.Result.uzip
-                $('#zip-code-input').val(zipCode);
-            }
-        }).fail(function () {
-            $('#error-msg').text('Error retrieving data.');
-        }).always(function () {
-            // always reset the UI even if we fail to get a ZIP code from the service.
-            $('#get-weather-btn').prop('disabled', false);
-        });
-    }
+    $('#get-weather-btn').prop('disabled', true);
+}
+function onGetLocationSuccess(position) {
 
-    var onGetLocationError = function (error) {
-        $('#error-msg').text('Error getting location. Leaving zip code field blank');
-        $('#get-weather-btn').prop('disabled', false);
-    }
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
 
-})($, WeatherApp, navigator);
+    var queryString =
+      'http://api.openweathermap.org/data/2.5/weather?lat='
+      + latitude + '&lon=' + longitude + '&appid=' + OpenWeatherAppKey + '&units=imperial';
+
+    $('#get-weather-btn').prop('disabled', false);
+
+    $.getJSON(queryString, function (results) {
+
+        showWeatherData(results);
+
+    }).fail(function (jqXHR) {
+        $('#error-msg').show();
+        $('#error-msg').text("Error retrieving data. " + jqXHR.statusText);
+    });
+
+}
+function onGetLocationError(error) {
+
+    $('#error-msg').text('Error getting location');
+    $('#get-weather-btn').prop('disabled', false);
+}
