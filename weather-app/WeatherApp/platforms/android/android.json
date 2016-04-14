@@ -37,10 +37,10 @@
     },
     "installed_plugins": {
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "io.cordova.myapp70a2a3"
+            "PACKAGE_NAME": "io.cordova.myappadaad6"
         },
         "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "io.cordova.myapp70a2a3"
+            "PACKAGE_NAME": "io.cordova.myappadaad6"
         }
     },
     "dependent_plugins": {},
@@ -48,13 +48,11 @@
         {
             "file": "plugins/cordova-plugin-whitelist/whitelist.js",
             "id": "cordova-plugin-whitelist.whitelist",
-            "pluginId": "cordova-plugin-whitelist",
             "runs": true
         },
         {
             "file": "plugins/cordova-plugin-geolocation/www/android/geolocation.js",
             "id": "cordova-plugin-geolocation.geolocation",
-            "pluginId": "cordova-plugin-geolocation",
             "clobbers": [
                 "navigator.geolocation"
             ]
@@ -62,7 +60,6 @@
         {
             "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
             "id": "cordova-plugin-geolocation.PositionError",
-            "pluginId": "cordova-plugin-geolocation",
             "runs": true
         }
     ],

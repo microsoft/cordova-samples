@@ -29,11 +29,11 @@
       <Configuration>Debug</Configuration>
       <Platform>Windows Phone 8</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug|Windows Phone (Universal)">
-      <Configuration>Debug</Configuration>
-      <Platform>Windows Phone (Universal)</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Android">
+	<ProjectConfiguration Include="Debug|Windows Phone (Universal)">
+	  <Configuration>Debug</Configuration>
+	  <Platform>Windows Phone (Universal)</Platform>
+	</ProjectConfiguration>
+	<ProjectConfiguration Include="Release|Android">
       <Configuration>Release</Configuration>
       <Platform>Android</Platform>
     </ProjectConfiguration>
@@ -67,7 +67,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>fb83664b-31bb-488e-94e5-cac7552eb4ca</ProjectGuid>
+    <ProjectGuid>ec879fed-99d4-474d-8b5e-e453167c1cb7</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup Condition="'$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0'">
@@ -88,19 +88,25 @@
     <!-- These errors will trigger if building from inside Visual Studio and requirements could not be determined -->
     <Error Condition="$(MDAPropertiesEvaluated) == 'true' And $(NodeJsDir) == ''" Text="Path to NodeJs could not be determined. Please check that NodeJs has been installed." />
     <Error Condition="$(MDAPropertiesEvaluated) == 'true' And $(MDAVsixDir) == ''" Text="Path to the Visual Studio Extension for Tools for Apache Cordova could not be determined. Please check that the extension has been installed." />
+
     <!-- These errors will trigger if building from outside Visual Studio (e.g. command line) and environment variables have not been set -->
     <Error Condition="$(MDAPropertiesEvaluated) == '' And $(NodeJsDir) == ''" Text="Path to NodeJs has not been specified. Please check that NodeJs has been installed and set the NodeJsDir environment variable before building." />
     <Error Condition="$(MDAPropertiesEvaluated) == '' And $(MDAVsixDir) == ''" Text="Path to Visual Studio Extension for Tools for Apache Cordova has not been specified. Please install it and set the MDAVsixDir environment variable before building." />
+
     <!-- Sanity check that things exist in the specified places. These are more likely to fail if building outside Visual Studio and the required environment variables have not been set, or set incorrectly. -->
     <Error Condition="!Exists('$(NodeJsDir)') Or !Exists('$(NodeJsDir)\node.exe')" Text="The specified NodeJs directory $(NodeJsDir) either does not exist, or does not contain node.exe. Please check that NodeJs has been installed, and set the NodeJsDir variable to the correct directory." />
     <Error Condition="!Exists('$(MDAVsixDir)') Or !Exists('$(MDAVsixDir)\packages\vs-tac')" Text="The specified directory to the Visual Studio extension $(MDAVsixDir)\node.exe either does not exist, or does not contain a packages\vs-tac sub-directory. Please check that the extension directory exists and set the MDAVsixDir variable to the correct directory." />
+
     <!-- Installs (if necessary) the supporting Nodejs module -->
-    <Exec Command="&quot;$(MDAVsixDir)&quot;\packages\vs-tac\install &quot;$(NodeJsDir)&quot; &quot;$(MDAVsixDir)&quot;\packages\vs-tac" />
+    <Exec Command='"$(MDAVsixDir)"\packages\vs-tac\install "$(NodeJsDir)" "$(MDAVsixDir)"\packages\vs-tac'/>
   </Target>
+
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties />
+      <UserProperties project_1json__JSONSchema="http://www.asp.net/media/4878834/project.json" />
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="_apacheCordovaProjectSourceItems.Targets" Condition="Exists('_apacheCordovaProjectSourceItems.Targets')" />
+
+  <Import Project="_apacheCordovaProjectSourceItems.Targets" Condition="Exists('_apacheCordovaProjectSourceItems.Targets')"  />
+
 </Project>

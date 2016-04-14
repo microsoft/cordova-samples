@@ -1,62 +1,59 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-
+    <head>
     <!--
         Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
         For details, see http://go.microsoft.com/fwlink/?LinkID=617521
     -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com http://api.openweathermap.org 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+        
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+        <title>WeatherApp</title>
+    </head>
+    <body>
+        <div data-role="page" id="weather-page">
 
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com https://query.yahooapis.com http://gws2.maps.yahoo.com http://l.yimg.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-    <title>WeatherApp</title>
-
-    <!-- WeatherApp references -->
-    <link href="css/jquery.mobile-1.4.5.min.css" rel="stylesheet" />
-    <link href="css/index.css" rel="stylesheet" />
-</head>
-<body>
-    <div data-role="page" id="weather-page">
-
-        <div data-role="header" class="header">
-            <h1 id="app-title">Weather App</h1>
-            <a href="/" class="ui-btn ui-btn-left ui-btn-corner-all ui-icon-home ui-btn-icon-notext" rel="external">Home</a>
-        </div>
-
-        <div role="main" class="ui-content">
-            <form>
-                <label for="zip-code">Type your zip code:</label>
-                <input id="zip-code-input" name="zip-code" placeholder="eg. 98001" required />
-                <button id="get-weather-btn" data-role="button" data-icon="search">Find Weather</button>
-            </form>
-
-            <ul id="weather-data" data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow not-displayed">
-                <li data-role="list-divider" id="title" class="ui-li-divider ui-bar-a"></li>
-                <li><span id="summary"><span id="temperature"></span> F <img src="" /></span></li>
-                <li>Wind: <span id="wind"></span> knots</li>
-                <li>Humidity: <span id="humidity"></span> %</li>
-                <li>Visibility: <span id="visibility"></span> miles</li>
-                <li>Sunrise: <span id="sunrise"></span></li>
-                <li>Sunset: <span id="sunset"></span></li>
-            </ul>
-
-            <div id="error-msg" class="not-displayed">
+            <div data-role="header" class="header">
+                <h1 id="app-title">Weather App</h1>
+                <a href="/" class="ui-btn ui-btn-left ui-btn-corner-all ui-icon-home ui-btn-icon-notext" rel="external">Home</a>
             </div>
 
+            <div role="main" class="ui-content">
+                <form>
+                    <label for="zip-code">Type your zip code:</label>
+                    <input id="zip-code-input" name="zip-code" placeholder="eg. 98001" required />
+                    <button id="get-weather-btn" data-role="button" data-icon="search">Find Weather</button>
+                </form>
+
+                <ul id="weather-data" data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow not-displayed">
+                    <li data-role="list-divider" id="title" class="ui-li-divider ui-bar-a"></li>
+                    <li><span id="summary"><span id="temperature"></span> F <img src="" /></span></li>
+                    <li>Wind: <span id="wind"></span> knots</li>
+                    <li>Humidity: <span id="humidity"></span> %</li>
+                    <li>Visibility: <span id="visibility"></span></li>
+                    <li>Sunrise: <span id="sunrise"></span></li>
+                    <li>Sunset: <span id="sunset"></span></li>
+                </ul>
+
+                <div id="error-msg" class="not-displayed">
+                </div>
+
+            </div>
+
+            <footer data-role="footer" data-position="fixed">
+                <h4>Visual Studio Tools for Cordova Demo</h4>
+            </footer>
+
         </div>
-
-        <footer data-role="footer" data-position="fixed">
-            <h4>Visual Studio Tools for Cordova Demo</h4>
-        </footer>
-
-    </div>
-
-    <!-- Cordova reference, this is added to your app when it's built. -->
-    <script src="scripts/jquery-2.2.0.min.js"></script>
-    <script src="scripts/jquery.mobile-1.4.5.min.js"></script>
-    <script src="cordova.js"></script>
-    <script src="scripts/platformOverrides.js"></script>
-    <script src="scripts/index.js"></script>
-    <script src="scripts/weather.js"></script>
-</body>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+        <script type="text/javascript" src="scripts/index.js"></script>
+        <script src="scripts/jquery-2.2.3.min.js"></script>
+        <script src="scripts/jquery.mobile-1.4.5.min.js"></script>
+        <script src="scripts/weather.js"></script>
+    </body>
 </html>

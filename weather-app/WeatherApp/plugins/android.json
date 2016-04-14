@@ -8,10 +8,10 @@
     },
     "installed_plugins": {
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "io.cordova.myapp70a2a3"
+            "PACKAGE_NAME": "io.cordova.myappadaad6"
         },
         "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "io.cordova.myapp70a2a3"
+            "PACKAGE_NAME": "io.cordova.myappadaad6"
         }
     },
     "dependent_plugins": {}
