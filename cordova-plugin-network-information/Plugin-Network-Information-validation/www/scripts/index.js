@@ -28,7 +28,7 @@
 
     function onOffline() {
         // Handle the offline event
-        offlineWrite("offline event: some offline data");
+        console.log("connection lost");
     }
 
     function onOnline() {
