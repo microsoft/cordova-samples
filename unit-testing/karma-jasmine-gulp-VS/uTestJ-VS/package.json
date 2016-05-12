@@ -1,0 +1,21 @@
+{
+  "name": "UTestJVS",
+  "version": "1.0.0",
+  "dependencies": {
+  },
+   "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/karma-runner/gulp-karma"
+  },
+  "bugs": {
+    "url": "https://github.com/karma-runner/gulp-karma/issues"
+  },
+  "homepage": "https://github.com/karma-runner/gulp-karma",
+  "devDependencies": {
+    "karma": "^0.13.0",
+    "karma-jasmine": "^0.3.6",
+    "karma-firefox-launcher": "^0.1.5",
+    "gulp": "^3.9.0"
+  }
+}
