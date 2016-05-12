@@ -1,0 +1,3 @@
+# Complete unit testing with Chutzpah and Jasmine in Visual Studio
+
+This sample is a complete Visual Studio project with extensive unit tests using the Jasmine framework and the Chutzpah test runner. See [Use Chutzpah in Visual Studio](http://taco.visualstudio.com/en-us/docs/unit-test-04-chutzpah/) for how this is project is initially set up, and [Improve tests/test-driven development](http://taco.visualstudio.com/en-us/docs/unit-test-05-tdd/) for the complete walkthrough.
