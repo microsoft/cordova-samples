@@ -3,13 +3,16 @@ Visual Studio Tools for Apache Cordova combines the goodness of your favorite ID
 
 Leveraging the Apache Cordova framework, we create packaged mobile apps that feel and behave like native device applications. What's great is that all this can be done completely from within Visual Studio, with full tooling support for building, debugging and packaging that our customers love. Our highlight features include attaching and debugging to the Android emulator and devices, plus, being able to build and simulate remotely for the iOS platform.
 
-The WeatherApp sample shows you a very basic app that gets the weather for any United States zip code. This app consumes the Geolocation plugin from Cordova to populate the search box with the zip code of the device's current location. This sample is featured in the following article: [Get started with Visual Studio Tools for Apache Cordova](http://vscordovadocs.azurewebsites.net/en-us/docs/get-started-first-mobile-app/).
+The WeatherApp sample shows you a very basic app that gets the weather for any United States zip code. This app consumes the Geolocation plugin from Cordova to populate the search box with the zip code of the device's current location. This sample is built from the ground up in the article: [Get started with Visual Studio Tools for Apache Cordova](http://taco.visualstudio.com/en-us/docs/get-started-first-mobile-app/).
 
 ## Building and running the sample
 
-You can download [VS Community 2015 in English](http://go.microsoft.com/fwlink/?LinkId=524433) to get started right away (or [go here for other languages and editions](http://www.microsoft.com/click/services/Redirect2.ashx?CR_CC=200626830)) and don’t forget to check “Tools for Apache Cordova” during setup. After you have Visual Studio 2015 installed, you can open up the project in Visual Studio.
+1. Download and install [VS Community 2015 in English](http://go.microsoft.com/fwlink/?LinkId=524433) to get started right away (or [go here for other languages and editions](http://www.microsoft.com/click/services/Redirect2.ashx?CR_CC=200626830)) and don’t forget to check “Tools for Apache Cordova” during setup (inside Custom install). 
+2. Download a copy of this Git repo (either clone it to your machine, or get it as a ```.zip```)
+3. Navigate to ```cordova-samples/weather-app/``` and double-click on ```WeatherApp.sln```.
+4. Press F5 and you're on your way! 
 
-Press F5 and you're on your way! If you haven't already done so, consider taking a look at our landing page for more information (http://go.microsoft.com/fwlink/?LinkID=398477).
+If you haven't already done so, consider taking a look at our landing page for more information (http://go.microsoft.com/fwlink/?LinkID=398477).
 
 ## Terms of use
 By downloading and running this project, you agree to the license terms of the third party application software, Microsoft products, and components to be installed.
