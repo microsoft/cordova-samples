@@ -9,7 +9,7 @@ The WeatherApp sample shows you a very basic app that gets the weather for any U
 
 1. Download and install [VS Community 2015 in English](http://go.microsoft.com/fwlink/?LinkId=524433) to get started right away (or [go here for other languages and editions](http://www.microsoft.com/click/services/Redirect2.ashx?CR_CC=200626830)) and don’t forget to check “Tools for Apache Cordova” during setup (inside Custom install). 
 2. Download a copy of this Git repo (either clone it to your machine, or get it as a ```.zip```)
-3. Navigate to ```cordova-samples/weather-app/``` and double-click on ```WeatherApp.sln```.
+3. (Unzip if needed) navigate to ```cordova-samples/weather-app/``` and double-click on ```WeatherApp.sln```.
 4. Press F5 and you're on your way! 
 
 If you haven't already done so, consider taking a look at our landing page for more information (http://go.microsoft.com/fwlink/?LinkID=398477).
