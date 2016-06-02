@@ -1,7 +1,7 @@
 ﻿(function () {
 	'use strict';
 
-	angular.module("xPlat.controllers").controller('ToDoCtrl', ['maps', 'storage', ToDoCtrl]);
+	angular.module("xPlat.controllers").controller('ToDoCtrl', ['maps', 'storage', '$scope', ToDoCtrl]);
 
 	/**
 	 * Controller for the todo list.
@@ -11,24 +11,40 @@
 	 * @constructor
 	 * @export
 	 */
-	function ToDoCtrl(maps, storage) {
-		this.maps = maps;
-		this.storage = storage;
-		this.todos = storage.getAll();
+	function ToDoCtrl(maps, storage, $scope) {
 
-		this.updateAddress = function (toDoItem) {
-			var _this = this;
+	    this.maps = maps;
+	    this.storage = storage;
+	    var that = this;
 
-			return this.maps.getCurrentPosition()
-				.then(_this.maps.getAddressFromPosition.bind(_this.maps), function (error) { return error.message; })
-				.then(function (address) {
-					toDoItem.address = address;
-					return _this.storage.update(toDoItem);
-				}, function (errorMessage) {
-					toDoItem.address = errorMessage;
-					return _this.storage.update(toDoItem);
-				});
-		}
+	    storage.getAll().then(function (items) {
+	        that.todos = items;
+            // Refresh on another thread.
+	        setTimeout(function () {
+	            $scope.$apply();
+	        }, 0);
+	    });
+
+	    this.updateAddress = function (toDoItem) {
+	        var _this = this;
+
+	        return this.maps.getCurrentPosition()
+                .then(_this.maps.getAddressFromPosition.bind(_this.maps), function (error) { return error.message; })
+                .then(function (address) {
+                    toDoItem.address = address;
+                    return _this.storage.update(toDoItem);
+                }, function (errorMessage) {
+                    toDoItem.address = errorMessage;
+                    return _this.storage.update(toDoItem);
+                });
+	    }
+
+	    this.refresh = function () {
+	        setTimeout(function () {
+	            $scope.$apply();
+	        }, 0);
+	    }
+
 	}
 
 	/**
@@ -74,11 +90,12 @@
 	/**
 	 * Remove a todo item from the list.
 	 */
-	ToDoCtrl.prototype.removeToDo = function (toDoItem) {
+	ToDoCtrl.prototype.removeToDo = function (toDoItem, $index) {
 		var _this = this;
 		this.storage.del(toDoItem).then(function (todo) {
-			var index = _this.todos.indexOf(todo);
-			_this.todos.splice(index, 1);
+			// var index = _this.todos.indexOf(todo);
+			_this.todos.splice($index, 1);
+		    _this.refresh();
 		});
 	};
 })();
