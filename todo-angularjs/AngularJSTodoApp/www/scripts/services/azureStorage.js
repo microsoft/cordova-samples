@@ -5,13 +5,13 @@
 
 	/**
 	 * Azure Mobile Apps Application URL.
-	 * TODO: Add your Azure Mobile Service Application URL.
+	 * TODO: Add your Azure Mobile App URL.
 	 *
 	 * @type {string}
 	 * @const
 	 */
-	var AZURE_MOBILE_APPS_ADDRESS = 'http://offlinedata-cordova.azurewebsites.net';
-	//var AZURE_MOBILE_APPS_ADDRESS = '';
+	//var AZURE_MOBILE_APPS_ADDRESS = 'http://youraddress.azurewebsites.net';
+	var AZURE_MOBILE_APPS_ADDRESS = '';
 	var client;
 
 	if (AZURE_MOBILE_APPS_ADDRESS) {
