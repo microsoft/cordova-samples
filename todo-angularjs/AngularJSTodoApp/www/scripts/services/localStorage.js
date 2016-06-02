@@ -43,7 +43,11 @@
 	 * Retrieve all data from local storage.
 	 */
 	LocalStorage.prototype.getAll = function () {
-		return this.loadFromStorage();
+
+	    var items;
+	    var _this = this;
+	    items = _this.loadFromStorage();
+	    return _this.$q.when(items);
 	};
 
 	/**

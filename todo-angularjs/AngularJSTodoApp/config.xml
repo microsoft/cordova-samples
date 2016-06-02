@@ -6,9 +6,10 @@
   <content src="index.html" />
   <access origin="*" />
   <preference name="SplashScreen" value="screen" />
-  <preference name="windows-target-version" value="8.1" />
+  <preference name="windows-target-version" value="10.0" />
   <preference name="windows-phone-target-version" value="8.1" />
-  <vs:plugin name="org.apache.cordova.geolocation" version="0.3.12" />
-  <vs:plugin name="com.microsoft.azure-mobile-services" version="1.2.7" />
   <vs:platformSpecificValues />
+  <plugin name="cordova-plugin-inappbrowser" version="1.4.0" />
+  <plugin name="cordova-plugin-whitelist" version="1.2.2" />
+  <plugin name="cordova-plugin-geolocation" version="2.2.0" />
 </widget>
