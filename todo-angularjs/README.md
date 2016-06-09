@@ -13,19 +13,20 @@ For purposes of distribution, we have removed our API key. Please [create and co
 ### [optional] Microsoft Azure
 For purposes of distribution, we have removed our API key and added a comment instead. The app falls back to local storage if you choose not to enter an API key.
 
-If you are not familar with Azure, this guide to [creating a new Mobile Service and adding a table](http://azure.microsoft.com/en-us/documentation/articles/mobile-services-html-get-started-data/#create-service) will be helpful.
+If you are not familar with Azure, this guide to [creating a new Azure Mobile App and adding a table](https://azure.microsoft.com/en-us/documentation/articles/app-service-mobile-cordova-get-started/) will be helpful.
 
-This application looks for a Mobile Service table named TodoItem and a dynamic schema to handle changing columns.
+This application looks for a Azure table named todoitem and a dynamic schema to handle changing columns.
 
-Create your Azure Mobile Service [Optional]
+Create your Azure Mobile App [Optional]
 - Navigate to http://azure.microsoft.com
 - Go to Portal and login with your Microsoft account
-- Create a new Azure Mobile Service
-- Create a table in your database with the following schema (id:string, __createdAt:date, __updatedAt:date, __version:timestamp, text:string, done:boolean, address:string)
+- Create a new Azure Mobile App and table by following instructions in [this article](https://azure.microsoft.com/en-us/documentation/articles/app-service-mobile-cordova-get-started/). (You can skip instructions that help you create the client app. Just use this sample instead.)
 
 
 ### Running The App
-You can download [VS Community 2015 RC in English](http://go.microsoft.com/fwlink/?LinkId=524433) to get started right away (or [go here for other languages and editions](http://www.microsoft.com/click/services/Redirect2.ashx?CR_CC=200626830)) and don’t forget to check “Tools for Apache Cordova” during setup. After you have Visual Studio 2015 installed, you can open up the project in Visual Studio.
+You can download [VS Community 2015 RTM in English](http://go.microsoft.com/fwlink/?LinkId=524433) to get started right away (or [go here for other languages and editions](http://www.microsoft.com/click/services/Redirect2.ashx?CR_CC=200626830)) and don’t forget to include the Apache Cordova development tools during setup. After you have Visual Studio 2015 installed, you can open up the project in Visual Studio.
+
+>**Note** You need at minimum Visual Studio 2015 Update 2 with the optional Cross-platform tools for HTML/JavaScript (Apache Cordova) installed.
 
 Add any API keys as explained above. Press F5 and you're on your way! If you haven't already done so, consider taking a look at our landing page for more information (http://go.microsoft.com/fwlink/?LinkID=398477).
 
@@ -45,7 +46,7 @@ Path to downloaded files:
 
 
 ## Terms of Use
-By downloading and running this project, you agree to the license terms of the third party application software, Microsoft products, and components to be installed. 
+By downloading and running this project, you agree to the license terms of the third party application software, Microsoft products, and components to be installed.
 
 The third party software and products are provided to you by third parties. You are responsible for reading and accepting the relevant license terms for all software that will be installed. Microsoft grants you no rights to third party software.
 
