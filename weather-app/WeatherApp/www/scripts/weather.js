@@ -34,10 +34,10 @@ function showWeatherData(results) {
         $('#humidity').text(results.main.humidity);
         $('#visibility').text(results.weather[0].main);
 
-        var sunriseDate = new Date(results.sys.sunrise);
+        var sunriseDate = new Date(results.sys.sunrise * 1000);
         $('#sunrise').text(sunriseDate.toLocaleTimeString());
 
-        var sunsetDate = new Date(results.sys.sunrise);
+        var sunsetDate = new Date(results.sys.sunset * 1000);
         $('#sunset').text(sunsetDate.toLocaleTimeString());
 
     } else {
