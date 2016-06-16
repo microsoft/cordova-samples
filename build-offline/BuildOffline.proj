@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2E9E3B90-A96B-48F0-B58F-CB861EFEF5FE}</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <OutputPath Condition="'$(OutputPath)'==''">bin\Debug</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath Condition="'$(OutputPath)'==''">bin\Release</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="ExtractOfflineArchive.cmd" />
+    <None Include="CreateOfflineArchive.cmd" />
+    <None Include="UnzipDependencies.ps1" />
+    <None Include="ZipDependencies.ps1" />
+  </ItemGroup>
+  <Target Name="Default">
+    <Exec Command="$(MSBuildThisFileDirectory)CreateOfflineArchive.cmd $(OutputPath)\BuildOffline" />
+    <Copy SourceFiles="ExtractOfflineArchive.cmd;UnzipDependencies.ps1" DestinationFolder="$(OutputPath)\BuildOffline" />
+  </Target>
+</Project>
