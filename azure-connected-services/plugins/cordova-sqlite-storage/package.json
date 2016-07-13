@@ -1,0 +1,33 @@
+{
+  "name": "cordova-sqlite-storage",
+  "version": "1.4.5",
+  "description": "Native interface to SQLite for PhoneGap/Cordova",
+  "cordova": {
+    "id": "cordova-sqlite-storage",
+    "platforms": [
+      "android",
+      "ios",
+      "windows"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/litehelpers/Cordova-sqlite-storage.git"
+  },
+  "keywords": [
+    "sqlite",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-windows"
+  ],
+  "author": "various",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/litehelpers/Cordova-sqlite-storage/issues"
+  },
+  "homepage": "https://github.com/litehelpers/Cordova-sqlite-storage",
+  "dependencies": {
+    "cordova-sqlite-storage-dependencies": "1.0.0"
+  }
+}

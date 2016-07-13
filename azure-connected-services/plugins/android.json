@@ -1,0 +1,32 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.microsoft.azure.mobileapps.OfflineDataCordova"
+        },
+        "cordova-plugin-ms-azure-mobile-apps": {
+            "PACKAGE_NAME": "com.microsoft.azure.mobileapps.OfflineDataCordova"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.microsoft.azure.mobileapps.OfflineDataCordova"
+        },
+        "phonegap-plugin-push": {
+            "SENDER_ID": "777777777",
+            "PACKAGE_NAME": "com.microsoft.azure.mobileapps.OfflineDataCordova"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.microsoft.azure.mobileapps.OfflineDataCordova"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.microsoft.azure.mobileapps.OfflineDataCordova"
+        }
+    }
+}
