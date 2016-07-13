@@ -58,6 +58,7 @@
     // Register for Push Notifications.
     // Requires that the phonegap-plugin-push be installed.
     // TODO: Setup an Azure push notification hub for your Mobile App backend.
+    // For help, see https://taco.visualstudio.com/en-us/docs/add-azure-mobile-app/
     var pushRegistration = null;
     function registerForPushNotifications() {
 
