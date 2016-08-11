@@ -33,37 +33,87 @@
     function onDeviceReady() {
         // TODO: Include the connection URL for your Azure Mobile Apps backend
         // TODO: Update CSP <meta> element in config.xml to reference your connected service domain URL.
-        client = new WindowsAzure.MobileServiceClient('http://yourConnectionUrl.azurewebsites.net');
+        client = new WindowsAzure.MobileServiceClient('http://offlinedata-cordova.azurewebsites.net');
 
-        // TODO: Add authentication support (recommended for push, but commented out here)
+        // Offline sync code
+        // Note: Requires at least version 2.0.0-beta6 of the Azure Mobile Apps plugin
+        var store = new WindowsAzure.MobileServiceSqliteStore('store.db');
+
+        // Define the local table for offline sync
+        store.defineTable({
+            name: 'todoitem',
+            columnDefinitions: {
+                id: 'string',
+                text: 'string',
+                deleted: 'boolean',
+                complete: 'boolean'
+            }
+        });
+
+
+        // TODO: Uncomment this code when using authentication (recommended for push, but commented out here)
         // Login to the service.
-        // client.login('google')
+        // client.login('twitter')
         //    .then(function () {
-                // Create a table reference
-                todoItemTable = client.getTable('todoitem');
 
-                // Refresh the todoItems
-                refreshDisplay();
+                // If not using offline sync, uncomment this line of code, and
+                // and comment out the offline sync code instead (anything referencing syncContext).
+                // todoItemTable = client.getTable('todoitem');
 
-                // Wire up the UI Event Handler for the Add Item
-                $('#add-item').submit(addItemHandler);
-                $('#refresh').on('click', refreshDisplay);
+                // Get the sync context from the client
+                var syncContext = client.getSyncContext();
+                // Initialize the sync context with the store
+                syncContext.initialize(store).then(function () {
 
-                // Added to register for push notifications.
-                registerForPushNotifications();
+                    // Get the local table reference.
+                    todoItemTable = client.getSyncTable('todoitem' /* table name */);
 
-        //    }, handleError);
+                    syncContext.pushHandler = {
+                        onConflict: function (serverRecord, clientRecord, pushError) {
+                            // Handle the conflict
+                            console.log("Sync conflict! " + pushError.getError().message);
+                        },
+                        onError: function (pushError) {
+                            // Handle the error
+                            // In the simulated offline state, you get "Sync error! Unexpected connection failure."
+                            console.log("Sync error! " + pushError.getError().message);
+                        }
+                    };
+
+                    // Sync local store to Azure table when app loads, or when login complete.
+                    syncContext.push().then(function () {
+                        /* push complete */
+
+                    });
+
+                    // Pull items from the Azure table after syncing to Azure.
+                    syncContext.pull(new WindowsAzure.Query('todoitem' /* table name */));
+
+                    // Refresh the todoItems
+                    refreshDisplay();
+
+                    // Wire up the UI Event Handler for the Add Item
+                    $('#add-item').submit(addItemHandler);
+                    $('#refresh').on('click', refreshDisplay);
+
+                    // Added to register for push notifications.
+                    // Comment out this line of code if not using push.
+                    registerForPushNotifications();
+
+                });
+
+
+            // }, handleError);
     }
 
     // Register for Push Notifications.
     // Requires that the phonegap-plugin-push be installed.
     // TODO: Setup an Azure push notification hub for your Mobile App backend.
-    // For help, see https://taco.visualstudio.com/en-us/docs/add-azure-mobile-app/
     var pushRegistration = null;
     function registerForPushNotifications() {
 
         pushRegistration = PushNotification.init({
-            android: { senderID: 'Your_Project_ID' },
+            android: { senderID: '134523967090' },
             ios: { alert: 'true', badge: 'true', sound: 'true' },
             wns: {}
         });

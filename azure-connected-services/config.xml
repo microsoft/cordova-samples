@@ -107,9 +107,8 @@
     <splash src="res/screens/wp8/SplashScreenImage.jpg" width="480" height="800" />
   </platform>
   <plugin name="cordova-plugin-device" version="1.1.2" />
-  <plugin name="cordova-plugin-ms-azure-mobile-apps" version="2.0.0-beta5" />
   <plugin name="phonegap-plugin-push" version="1.7.4" src="https://github.com/phonegap/phonegap-plugin-push">
-    <variable name="SENDER_ID" value="Your_Project_ID" />
+    <variable name="SENDER_ID" value="134523967090" />
   </plugin>
   <vs:platformSpecificValues>
     <vs:platformSpecificWidget platformName="windows">
@@ -121,4 +120,5 @@
   <preference name="WindowsStoreDisplayName" value="cordova-video-push-notifs" />
   <plugin name="cordova-plugin-inappbrowser" version="1.4.0" />
   <plugin name="cordova-sqlite-storage" version="1.4.5" />
+  <plugin name="cordova-plugin-ms-azure-mobile-apps" version="2.0.0-beta6" />
 </widget>

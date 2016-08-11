@@ -5,7 +5,7 @@
 -->
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
            id="cordova-plugin-ms-azure-mobile-apps"
-      version="2.0.0-beta5">
+      version="2.0.0-beta6">
     <name>Azure Mobile Apps</name>
     <description>This library enables you to develop scalable and secure cordova mobile apps hosted in Microsoft Azure. You can incorporate structured storage, user authentication and push notifications in minutes. For more information, check out http://azure.microsoft.com/en-us/documentation/articles/app-service-mobile-value-prop-preview</description>
     <license>Apache 2.0</license>

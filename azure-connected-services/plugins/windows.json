@@ -10,14 +10,14 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "cordova-video-push-notifs"
         },
-        "cordova-plugin-ms-azure-mobile-apps": {
-            "PACKAGE_NAME": "cordova-video-push-notifs"
-        },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "cordova-video-push-notifs"
         },
         "phonegap-plugin-push": {
             "SENDER_ID": "777777777",
+            "PACKAGE_NAME": "cordova-video-push-notifs"
+        },
+        "cordova-plugin-ms-azure-mobile-apps": {
             "PACKAGE_NAME": "cordova-video-push-notifs"
         }
     },

@@ -7,14 +7,6 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-ms-azure-mobile-apps": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-ms-azure-mobile-apps"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "phonegap-plugin-push": {
         "source": {
             "type": "git",
@@ -46,6 +38,14 @@
         "source": {
             "type": "registry",
             "id": "cordova-plugin-whitelist@1"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-ms-azure-mobile-apps": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-ms-azure-mobile-apps"
         },
         "is_top_level": true,
         "variables": {}
