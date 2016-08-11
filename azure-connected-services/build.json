@@ -7,5 +7,15 @@
       "password": "",
       "keystoreType": ""
     }
+  },
+  "windows": {
+    "release": {
+      "packageCertificateKeyFile": "res\\native\\windows\\CordovaApp.pfx",
+      "publisherId": "CN=B4DE7059-BAA5-461C-BE52-DA36D997DA97"
+    },
+    "debug": {
+      "packageCertificateKeyFile": "res\\native\\windows\\CordovaApp.pfx",
+      "publisherId": "CN=B4DE7059-BAA5-461C-BE52-DA36D997DA97"
+    }
   }
 }
