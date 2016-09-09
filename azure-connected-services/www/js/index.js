@@ -33,7 +33,7 @@
     function onDeviceReady() {
         // TODO: Include the connection URL for your Azure Mobile Apps backend
         // TODO: Update CSP <meta> element in config.xml to reference your connected service domain URL.
-        client = new WindowsAzure.MobileServiceClient('http://yourazuremobileappurl.azurewebsites.net');
+        client = new WindowsAzure.MobileServiceClient('http://yourmobileapp.azurewebsites.net');
 
         // Offline sync code
         // Note: Requires at least version 2.0.0-beta6 of the Azure Mobile Apps plugin
