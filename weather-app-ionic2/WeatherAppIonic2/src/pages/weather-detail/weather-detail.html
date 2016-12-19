@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Forecast</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <!--show this if there are no items in the list-->
+    <ion-item [hidden]="forecast.values.length > 0">
+      <p><strong>Weather data is not available</strong></p>
+    </ion-item>
+    <ion-item [hidden]="forecast.values.length < 1">
+      Period: {{forecast.period}}
+    </ion-item>
+    <ion-item *ngFor="let item of forecast.values">
+      <p><strong>{{item.name}}:</strong> {{item.value}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>Visual Studio Tools for Apache Cordova</ion-title>
+  </ion-toolbar>
+</ion-footer>
