@@ -7,8 +7,8 @@ import 'rxjs/add/operator/toPromise';
 export class Weather {
 
   private weatherEndpoint = 'http://api.openweathermap.org/data/2.5/';
-  //todo: Move this to an external file before publishing to GitHub
   private weatherKey = '098d806bd8bbe5968c7d58e3cc4f4917';
+  //private weatherKey = '';
 
   constructor(public http: Http) {
     //Nothing to do here, move along
@@ -39,7 +39,6 @@ export class Weather {
   }
 
   getCurrent(loc: any): Promise<any> {
-    console.log('Entering Weather.getCurrent');
     let url: string = this.makeDataURL(loc, 'weather');
     return this.http.get(url)
       .toPromise()
@@ -48,7 +47,6 @@ export class Weather {
   }
 
   getForecast(loc: any): Promise<any> {
-    console.log('Entering Weather.getForecast');    
     let url: string = this.makeDataURL(loc, 'forecast');
     return this.http.get(url)
       .toPromise()
@@ -58,7 +56,6 @@ export class Weather {
 
   //'Borrowed' from //https://angular.io/docs/ts/latest/guide/server-communication.html
   private extractData(res: Response) {
-    console.log('Extracting data from server response');
     //Convert the response to JSON format  
     let body = res.json();
     //Return the data (or nothing)
@@ -67,7 +64,7 @@ export class Weather {
 
   //'Borrowed' from //https://angular.io/docs/ts/latest/guide/server-communication.html
   private handleError(res: Response | any) {
-    console.log('Entering handleError');
+    console.error('Entering handleError');
     console.dir(res);
     return Promise.reject(res.message || res);
   }

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, Platform } from 'ionic-angular';
-import { AlertController } from 'ionic-angular';
-import { Geolocation } from 'ionic-native';
-import { Keyboard } from 'ionic-native';
-import { Weather } from '../../providers/weather';
+import { AlertController, LoadingController, NavController, Platform } from 'ionic-angular';
+import { Geolocation, Keyboard } from 'ionic-native';
+//Pages
 import { WeatherDetailPage } from '../weather-detail/weather-detail';
+//Providers
+import { Weather } from '../../providers/weather';
 
 @Component({
     selector: 'page-home',
@@ -13,38 +13,39 @@ import { WeatherDetailPage } from '../weather-detail/weather-detail';
 export class HomePage {
 
     //This is used to set the Ionic Segment to the first item
-    currentMode = 'current';
-    degreeStr = ' degrees (F)';
+    currentMode: string = 'current';
+    degreeStr: string = ' degrees (F)';
     // used to control which content is displayed on the home page
     displayMode: string = this.currentMode;
     //an empty object (for now) to store our location data passed to the API
-    currentLoc = {};
+    currentLoc: any = {};
     //Mapped to the search field
-    searchInput = '';
+    searchInput: string = '';
     //current weather items array
-    c_items = [];
+    c_items: Array<any> = [];
     //forecast items array
-    f_items = [];
+    f_items: Array<any> = [];
 
     //array of day strings used when rendering data
-    days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    days: Array<string> = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-    constructor(public nav: NavController, public platform: Platform, public weather: Weather,
-        public alertController: AlertController) {
+    constructor(
+        public alertController: AlertController,
+        public loadingCtrl: LoadingController,
+        public nav: NavController,
+        public platform: Platform,
+        public weather: Weather,
+    ) {
         //Nothing to do here, move along
-
     }
 
     ionViewDidLoad() {
         //Once the main view loads
-        console.log('HomePage view loaded');
         //and after the platform is ready...
         this.platform.ready().then(() => {
-            console.log('Platform is ready');
             //Setup a resume event listener
             document.addEventListener('resume', () => {
                 //Get the local weather when the app resumes
-                console.log('Application resumed');
                 //Switch to the Current segment
                 this.displayMode = this.currentMode
                 //then update it with local weather conditions
@@ -56,10 +57,8 @@ export class HomePage {
     }
 
     getLocalWeather() {
-        console.log('Getting local weather conditions');
         let locOptions = { 'maximumAge': 3000, 'timeout': 5000, 'enableHighAccuracy': true };
         Geolocation.getCurrentPosition(locOptions).then(pos => {
-            console.log('Retrieved current location');
             //Store our location object for later use
             this.currentLoc = { 'lat': pos.coords.latitude, 'long': pos.coords.longitude };
             //and ask for the weather for the current location
@@ -77,7 +76,6 @@ export class HomePage {
         //whenever the user enters a zip code, replace the current location
         //with the entered value, then show current weather for the selected
         //location.
-        console.log('Entering setZipCode');
         //Hide the keyboard if it's open, just in case
         Keyboard.close();
         //Populate the currentLoc variable with the city name
@@ -91,7 +89,6 @@ export class HomePage {
     }
 
     refreshPage() {
-        console.log('Refreshing page');
         //Which page are we looking at now?
         if (this.displayMode === this.currentMode) {
             //Then load that page...
@@ -139,10 +136,14 @@ export class HomePage {
     }
 
     showCurrent() {
-        console.log('Updating current weather conditions');
+        let loader = this.loadingCtrl.create({
+            content: "Retrieving current conditions..."
+        });
+        loader.present();
         this.weather.getCurrent(this.currentLoc).then(
             data => {
-                console.log('Processing current conditions data');
+                //Hide the loading indicator
+                loader.dismiss();
                 // console.dir(data);
                 //clear out the previous array contents
                 this.c_items = [];
@@ -152,11 +153,13 @@ export class HomePage {
                     this.c_items = this.formatWeatherData(data);
                 } else {
                     //This really should never happen
-                    console.log('Data object is empty');
+                    console.error('Error retrieving weather data: Data object is empty');
                 }
             },
             error => {
-                console.error("Error retrieving weather data");
+                //Hide the loading indicator
+                loader.dismiss();
+                console.error('Error retrieving weather data');
                 console.dir(error);
                 this.showAlert(error);
             }
@@ -164,11 +167,14 @@ export class HomePage {
     }
 
     showForecast() {
-        console.log('Updating forecast data');
+        let loader = this.loadingCtrl.create({
+            content: "Retrieving forecast..."
+        });
+        loader.present();
         this.weather.getForecast(this.currentLoc).then(
-            data => {                
-                console.log('Processing weather forecast data');
-                // console.dir(data);
+            data => {
+                //Hide the loading indicator
+                loader.dismiss();
                 //clear out the previous array contents
                 this.f_items = [];
                 //Now, populate the array with data from the weather service
@@ -178,7 +184,7 @@ export class HomePage {
                     //Process each forecast period in the array
                     for (let period of data.list) {
                         //Create a 'record' consisting of a time period's results
-                        let weatherValues = this.formatWeatherData(period);
+                        let weatherValues: any = this.formatWeatherData(period);
                         //Append this, along with the time period information, into the forecast
                         //items array.          
                         //Get the forecast date as a date object                     
@@ -190,12 +196,15 @@ export class HomePage {
                         //Create a new object in the results array for this period          
                         this.f_items.push({ 'period': day + ' at ' + tm, 'values': weatherValues });
                     }
+                    console.dir(this.f_items);
                 } else {
                     //This really should never happen
-                    console.log('Data object is empty');
+                    console.error('Error displaying weather data: Data object is empty');
                 }
             },
             error => {
+                //Hide the loading indicator
+                loader.dismiss();
                 console.error("Error retrieving weather data");
                 console.dir(error);
                 this.showAlert(error);
@@ -206,7 +215,6 @@ export class HomePage {
     viewForecast(item) {
         //When the user selects one of the Forecast periods,
         //open up the details page for the selected period.
-        console.log('Opening forecast page: %s', item.period);
         this.nav.push(WeatherDetailPage, { 'forecast': item });
     }
 
