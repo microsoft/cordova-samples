@@ -136,17 +136,18 @@ export class HomePage {
     }
 
     showCurrent() {
+        //clear out the previous array contents
+        this.c_items = [];
+        //Create the loading indicator
         let loader = this.loadingCtrl.create({
             content: "Retrieving current conditions..."
         });
+        //Show the loading indicator
         loader.present();
         this.weather.getCurrent(this.currentLoc).then(
             data => {
                 //Hide the loading indicator
                 loader.dismiss();
-                // console.dir(data);
-                //clear out the previous array contents
-                this.c_items = [];
                 //Now, populate the array with data from the weather service
                 if (data) {
                     //We have data, so lets do something with it
@@ -167,16 +168,19 @@ export class HomePage {
     }
 
     showForecast() {
+        //clear out the previous array contents
+        this.f_items = [];
+        //Create the loading indicator
         let loader = this.loadingCtrl.create({
             content: "Retrieving forecast..."
         });
+        //Show the loading indicator
         loader.present();
         this.weather.getForecast(this.currentLoc).then(
             data => {
                 //Hide the loading indicator
                 loader.dismiss();
-                //clear out the previous array contents
-                this.f_items = [];
+
                 //Now, populate the array with data from the weather service
                 //Do we have some data?
                 if (data) {
