@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<widget id="io.cordova.hellocordova" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>HelloCordova</name>
+  <description>
+        A sample Apache Cordova application that responds to the deviceready event.
+    </description>
+  <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
+  <content src="index.html" />
+  <plugin name="cordova-plugin-whitelist" version="1" />
+  <access origin="*" />
+  <allow-intent href="http://*/*" />
+  <allow-intent href="https://*/*" />
+  <allow-intent href="tel:*" />
+  <allow-intent href="sms:*" />
+  <allow-intent href="mailto:*" />
+  <allow-intent href="geo:*" />
+  <allow-navigation href="https://cordovahostedweb.azurewebsites.net" />
+  <preference name="windows-target-version" value="10.0" />
+  <platform name="android">
+    <allow-intent href="market:*" />
+  </platform>
+  <platform name="ios">
+    <allow-intent href="itms:*" />
+    <allow-intent href="itms-apps:*" />
+  </platform>
+  <vs:plugin name="cordova-plugin-whitelist" version="1.0.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" />
+  <plugin name="cordova-plugin-camera" version="2.2.0" />
+  <plugin name="cordova-plugin-compat" version="1.0.0" />
+  <engine name="android" spec="~5.1.1" />
+  <engine name="ios" spec="~4.1.1" />
+  <engine name="windows" spec="~4.3.2" />
+</widget>
