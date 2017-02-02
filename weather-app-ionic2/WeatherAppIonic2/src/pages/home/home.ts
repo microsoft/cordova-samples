@@ -35,9 +35,7 @@ export class HomePage {
         public nav: NavController,
         public platform: Platform,
         public weather: Weather,
-    ) {
-        //Nothing to do here, move along
-    }
+    ) { }
 
     ionViewDidLoad() {
         //Once the main view loads
@@ -78,14 +76,17 @@ export class HomePage {
         //location.
         //Hide the keyboard if it's open, just in case
         Keyboard.close();
-        //Populate the currentLoc variable with the city name
-        this.currentLoc = { 'zip': this.searchInput };
-        //Clear the Zip Code input field
-        this.searchInput = '';
-        //Switch to the 'current' tab
-        this.displayMode = this.currentMode;
-        //get the weather for the specified city
-        this.showCurrent();
+        //check to see if we got an input from the user
+        if (this.searchInput.length > 0) {
+            //Populate the currentLoc variable with the zip code the user entered
+            this.currentLoc = { 'zip': this.searchInput };
+            //Clear the Zip Code input field
+            this.searchInput = '';
+            //Switch to the 'current' tab
+            this.displayMode = this.currentMode;
+            //get the weather for the specified city
+            this.showCurrent();
+        }
     }
 
     refreshPage() {
@@ -180,7 +181,6 @@ export class HomePage {
             data => {
                 //Hide the loading indicator
                 loader.dismiss();
-
                 //Now, populate the array with data from the weather service
                 //Do we have some data?
                 if (data) {
@@ -191,8 +191,15 @@ export class HomePage {
                         let weatherValues: any = this.formatWeatherData(period);
                         //Append this, along with the time period information, into the forecast
                         //items array.          
+                        //=============================================
                         //Get the forecast date as a date object                     
-                        let d = new Date(period.dt_txt);
+                        //Replaced this (which works on Android)
+                        //let d = new Date(period.dt_txt);
+                        //with this:
+                        let d = new Date(period.dt_txt.replace(' ', 'T'));
+                        //to get around a problem with date formatting on iOS.
+                        //per this post: http://stackoverflow.com/questions/13363673/javascript-date-is-invalid-on-ios
+                        //=============================================
                         //Determe the day of the week
                         let day = this.days[d.getDay()];
                         //And the time
@@ -200,7 +207,6 @@ export class HomePage {
                         //Create a new object in the results array for this period          
                         this.f_items.push({ 'period': day + ' at ' + tm, 'values': weatherValues });
                     }
-                    console.dir(this.f_items);
                 } else {
                     //This really should never happen
                     console.error('Error displaying weather data: Data object is empty');
