@@ -1,0 +1,25 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "io.cordova.myapp47da72"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.microsoft.taco.cordovahostedapp"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.microsoft.taco.cordovahostedapp"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.microsoft.taco.cordovahostedapp"
+        }
+    }
+}
