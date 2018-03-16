@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <CordovaProject>..\CordovaHostedApp</CordovaProject>    
+  </PropertyGroup>
+  <ItemGroup>
+    <CordovaAndroidAssets Include="$(CordovaProject)\platforms\android\assets\www\**\*.js"></CordovaAndroidAssets>
+    <CordovaiOSAssets Include="$(CordovaProject)\platforms\ios\www\**\*.js"></CordovaiOSAssets>
+    <CordovaWindowsAssets Include="$(CordovaProject)\platforms\windows\www\**\*.js"></CordovaWindowsAssets>
+  </ItemGroup>
+  <Target Name="Import">
+    <Copy
+          SourceFiles="@(CordovaAndroidAssets)"
+          DestinationFolder="cordovadist\android\%(RecursiveDir)"
+        />
+
+    <Copy
+          SourceFiles="@(CordovaiOSAssets)"
+          DestinationFolder="cordovadist\ios\%(RecursiveDir)"
+        />
+    
+  <Copy
+          SourceFiles="@(CordovaWindowsAssets)"
+          DestinationFolder="cordovadist\windows\%(RecursiveDir)"
+        />
+
+  </Target>
+</Project>
