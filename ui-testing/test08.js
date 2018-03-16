@@ -41,8 +41,8 @@ config.android19Hybrid = {
 var appDriver = yiewd.remote({
     hostname: 'ondemand.saucelabs.com',
     port: 80,
-    username: 'kraigb',
-    password: '001aebc3-aab2-458e-9c7c-9478a1ce0ef6'
+    username: '',
+    password: ''
 });
 
 //Main tests
