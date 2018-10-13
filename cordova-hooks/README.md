@@ -9,7 +9,7 @@ Hooks can be added to your project in two ways:
 1. **Project Hooks** - Referenced in config.xml
 2. **Plugin Hooks** - Hooks contained inside a Cordova plugin and referenced in plugin.xml.
 
-When developing hooks it is often easiest to **first build a project hook** and **then migrate it into a plugin later.** Plugins allow you to reuse hooks in a modular fashion, are easier to install, and can be published publicly for easy access like other plugins. However, certain events only occur when a plugin is "installed" for a given platform which can complicate intial development.
+When developing hooks it is often easiest to **first build a project hook** and **then migrate it into a plugin later.** Plugins allow you to reuse hooks in a modular fashion, are easier to install, and can be published publicly for easy access like other plugins. However, certain events only occur when a plugin is "installed" for a given platform which can complicate initial development.
 
 Hooks are implemented as simple JavaScript modules that are then referenced in either your project's config.xml or in a Cordova plugin's plugin.xml. Ex:
 
@@ -31,7 +31,7 @@ This XML tells the CLI to execute the hook in "hooks/hook-symlink-fix.js" before
 
 Note: While there is an older "shell script" based way to add hooks into your project, this is missing a number of useful features and requires an "execute bit" to be set on the script for iOS on OSX which makes authoring them on Windows challenging.
 
-Hooks are a powerful and flexible concept that can be used in a variety of events and even execute other Cordova commands. You won't use them every day, but they are hugely useful in certain circumsances. Hooks will run from any Cordova based CLI (ex: Ionic) or when using something like Gulp to run your CI builds. Note that project hooks do not currently work in PhoneGap Build. See the **[Cordova Hooks Readme](http://go.microsoft.com/fwlink/?LinkID=533744)** for additional details on creating hooks and a list of available events. 
+Hooks are a powerful and flexible concept that can be used in a variety of events and even execute other Cordova commands. You won't use them every day, but they are hugely useful in certain circumstances. Hooks will run from any Cordova based CLI (ex: Ionic) or when using something like Gulp to run your CI builds. Note that project hooks do not currently work in PhoneGap Build. See the **[Cordova Hooks Readme](http://go.microsoft.com/fwlink/?LinkID=533744)** for additional details on creating hooks and a list of available events. 
 
 ##The Sample Project
 In this sample project you can find here has two hooks designed to deal with two documented, known issues. The sample project adds one hook via a plugin and another at the project level via config.xml.
@@ -97,7 +97,7 @@ To verify everything is working, you can look for some messages in the Output Wi
 
 **Building for an iOS Device**
 - You will see the following in the Output Window or build command line output from the project hook: "**Detecting broken symlinks**." The hook is wired in via config.xml in the project. See "plugins/cordova-plugin-res-native" for details. You can Right Click => View Code on config.xml to see the XML elements that cause this hook to fire.
-- You will see the following in the Output Window or build command line ooutput from the plugin hook: "**Processing res/native for ios**." See "plugins/cordova-plugin-res-native" in your project for details. The hook is wired in through plugin.xml.
+- You will see the following in the Output Window or build command line output from the plugin hook: "**Processing res/native for ios**." See "plugins/cordova-plugin-res-native" in your project for details. The hook is wired in through plugin.xml.
 - You should see the file **res-native-works.txt** in thb "remote-builds/&lt;buildnum&gt;/cordovaApp/platforms/ios" folder where &lt;buildnum&gt; is the build number you see in the Output Window if built using the remote agent. Otherwise the file will be under "platforms/ios". This file comes from the res/native folder in the project.
 
 ## Terms of Use

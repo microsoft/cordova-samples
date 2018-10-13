@@ -13,7 +13,7 @@ For purposes of distribution, we have removed our API key. Please [create and co
 ### [optional] Microsoft Azure
 For purposes of distribution, we have removed our API key and added a comment instead. The app falls back to local storage if you choose not to enter an API key.
 
-If you are not familar with Azure, this guide to [creating a new Azure Mobile App and adding a table](https://azure.microsoft.com/en-us/documentation/articles/app-service-mobile-cordova-get-started/) will be helpful.
+If you are not familiar with Azure, this guide to [creating a new Azure Mobile App and adding a table](https://azure.microsoft.com/en-us/documentation/articles/app-service-mobile-cordova-get-started/) will be helpful.
 
 This application looks for a Azure table named todoitem and a dynamic schema to handle changing columns.
 

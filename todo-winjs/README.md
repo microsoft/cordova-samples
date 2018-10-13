@@ -12,7 +12,7 @@ For purposes of distribution, we have removed our API key. Please [create and co
 ### [optional] Microsoft Azure
 For purposes of distribution, we have removed our API key and added a comment instead. The app falls back to local storage if you choose not to enter an API key.
 
-If you are not familar with Azure, this guide to [creating a new Mobile Service and adding a table](http://azure.microsoft.com/en-us/documentation/articles/mobile-services-html-get-started-data/#create-service) will be helpful.
+If you are not familiar with Azure, this guide to [creating a new Mobile Service and adding a table](http://azure.microsoft.com/en-us/documentation/articles/mobile-services-html-get-started-data/#create-service) will be helpful.
 
 This application looks for a Mobile Service table named TodoItem and a dynamic schema to handle changing columns.
 
