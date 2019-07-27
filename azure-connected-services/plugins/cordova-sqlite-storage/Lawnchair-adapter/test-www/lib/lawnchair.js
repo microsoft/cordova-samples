@@ -88,7 +88,7 @@ Lawnchair.plugins = []
  * generic shallow extension for plugins
  * ===
  * - if an init method is found it registers it to be called when the lawnchair is inited 
- * - yes we could use hasOwnProp but nobody here is an asshole
+ * - yes we could use hasOwnProp but nobody here is like that.
  */ 
 Lawnchair.plugin = function (obj) {
     for (var i in obj) 
