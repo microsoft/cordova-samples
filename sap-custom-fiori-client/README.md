@@ -38,7 +38,7 @@ You can build and edit these apps in Visual Studio [Tools for Apache Cordova](ht
 	
 	3. Type "npm install" from this folder 
 	
-	4. Run "node taco_create.js" from this same locaiton. Like create_fiori_client.js, the script will take some time to execute.
+	4. Run "node taco_create.js" from this same location. Like create_fiori_client.js, the script will take some time to execute.
 
 		> This script first runs create_fiori_client.js and then copies a few files that are placed inside the "platforms" folder directly by the Fiori client script into the main project so the platforms folder does not need to be added to source control and for improved iOS compatibility when remotely building from Windows.
 
