@@ -3,11 +3,11 @@
 
 // Client ID and Client Secret received from ADM
 // For more info, see: https://developer.amazon.com/public/apis/engage/device-messaging/tech-docs/02-obtaining-adm-credentials
-var CLIENT_ID = "amzn1.application-oa2-client.8e838f6629554e26ae3f43a6c663cd60";
-var CLIENT_SECRET = "0af96083320f5d70dc4f358cc783ac65a22e78b297ba257df34d5f723f24543f";
+var CLIENT_ID = "replace_with_client_id";
+var CLIENT_SECRET = "replace_with_client_secret";
 
 // Registration ID, received on device after it registers with ADM server
-var REGISTRATION_IDS = ["amzn1.adm-registration.v2.Y29tLmFtYXpvbi5EZXZpY2VNZXNzYWdpbmcuUmVnaXN0cmF0aW9uSWRFbmNyeXB0aW9uS2V5ITEhOE9rZ2h5TXlhVEFFczg2ejNWL3JMcmhTa255Uk5BclhBbE1XMFZzcnU1aFF6cTlvdU5FbVEwclZmdk5oTFBVRXVDN1luQlRSNnRVRUViREdQSlBvSzRNaXVRRUlyUy9NYWZCYS9VWTJUaGZwb3ZVTHhlRTM0MGhvampBK01hVktsMEhxakdmQStOSXRjUXBTQUhNU1NlVVVUVkFreVRhRTBCYktaQ2ZkUFdqSmIwcHgzRDhMQnllVXdxQ2EwdHNXRmFVNklYL0U4UXovcHg0K3Jjb25VbVFLRUVVOFVabnh4RDhjYmtIcHd1ZThiekorbGtzR2taMG95cC92Y3NtZytrcTRPNjhXUUpiZEk3QzFvQThBRTFWWXM2NHkyMjdYVGV5RlhhMWNHS0k9IW5GNEJMSXNleC9xbWpHSU52NnczY0E9PQ"];
+var REGISTRATION_IDS = ["replace_with_registration_ids"];
 
 // Message payload to be sent to client
 var payload = {
